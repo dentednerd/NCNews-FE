@@ -8,8 +8,8 @@ class VoteButton extends React.Component {
         <span className="voteCount">
             {this.props.voteCount}
         <div className="voteButton">
-          <button>Vote Up</button>
-          <button>Vote Down</button>
+          <button>+</button>
+          <button>-</button>
         </div>   
         </span>
       </div>

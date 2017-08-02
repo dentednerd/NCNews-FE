@@ -9,7 +9,7 @@ class Comment extends React.Component {
                 <h2>{this.props.comment.created_by} says:</h2>
                 <span className="commentBody">{this.props.comment.body}</span><br />
                 <span className="commentInfo">Posted at {timeConverter(timestamp)}<br />
-                Votes: {this.props.comment.votes}</span>
+                Votes: {this.props.comment.votes} + -</span>
             </div>
         );
     }
