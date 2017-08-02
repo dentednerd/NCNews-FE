@@ -14,7 +14,6 @@ const ArticleCard = function (props) {
             <span className="topic">{props.topic}</span>
             <Link className="articleLink" to={'/articles/' + props.article_id}>
               <h3 className="title is-3 articleLink">{props.title}</h3>
-              
             </Link>
           </div>
         </div>
