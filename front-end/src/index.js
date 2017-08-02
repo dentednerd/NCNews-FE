@@ -15,14 +15,15 @@ import reducer from './reducer/reducer';
 const store = createStore(reducer, applyMiddleware(thunk));
 const history = createBrowserHistory();
 
-ReactDOM.render(<Provider store={store}>
-                <Router history={history}>
-                  <App>
-                    <Switch>
-                      <Route exact path='/' component={ArticleList} />
-                      <Route path='/articles/:article_id' component={ArticlePage} />
-                      <Route path='/topics/:topic_id/articles' component={TopicPage} />
-                    </Switch>
-                  </App>
-                </Router>
-                </Provider>, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={history}>
+      <App>
+        <Switch>
+          <Route exact path='/' component={ArticleList} />
+          <Route path='/articles/:article_id' component={ArticlePage} />
+          <Route path='/topics/:topic_id/articles' component={TopicPage} />
+        </Switch>
+      </App>
+    </Router>
+  </Provider>, document.getElementById('root'));

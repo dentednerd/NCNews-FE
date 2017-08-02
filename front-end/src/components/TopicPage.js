@@ -5,6 +5,8 @@ import ArticleCard from './ArticleCard';
 import Profile from './Profile';
 import * as actions from '../actions/actions';
 
+// TODO: filter articles by topic
+
 
 class TopicPage extends React.Component {
   componentDidMount () {
@@ -15,12 +17,13 @@ class TopicPage extends React.Component {
     return (
       <div className="columns">
         <div className="column is-three-quarters" id='TopicPage'>
-          {this.props.articles.map(article => <ArticleCard title={article.title}
-                       author={article.created_by}
-                       votes={article.votes} 
-                       key={article.title}
-                       topic={article.belongs_to} 
-                       article_id={article._id}
+          {this.props.articles.map(article => <ArticleCard 
+            title={article.title}
+            author={article.created_by}
+            votes={article.votes} 
+            key={article.title}
+            topic={article.belongs_to} 
+            article_id={article._id}
           />)}
         </div>
         <Profile />

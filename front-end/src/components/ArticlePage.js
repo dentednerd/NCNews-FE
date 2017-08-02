@@ -11,32 +11,41 @@ import * as actions from '../actions/actions';
 import '../../public/style.css';
 
 class ArticlePage extends React.Component {
+  componentDidMount () {
+    this.props.fetchArticlesByID(this.props.match.params.article_id);
+    this.props.fetchCommentsByArticleID(this.props.match.params.article_id);
+  }
 
-    componentDidMount () {
-        this.props.fetchArticlesByID(this.props.match.params.article_id);
-        this.props.fetchCommentsByArticleID(this.props.match.params.article_id);
-    }
-
-    render () {
-        return (
-            <div className="articlePage columns">
-                <div className="column is-three-quarters">
-                <ArticleTitleBar title={this.props.selectedArticle.title}
-                author={this.props.selectedArticle.created_by} />
-                <ArticleText body={this.props.selectedArticle.body} />
-                <hr />
-                <div className="voteAndComment">
-                    <VoteButton voteCount={this.props.selectedArticle.votes} />
-                    <NewComment postComment={this.props.addCommentsByArticleID}
-                                article_id={this.props.match.params.article_id} />
-                </div>
-                <hr />
-                <CommentList selectedComments={this.props.selectedComments} />               
-                </div>
-                <Profile />
-            </div>
-        );
-    }
+  render () {
+    return (
+      <div className="articlePage columns">
+        <div className="column is-three-quarters">
+          <ArticleTitleBar 
+            title={this.props.selectedArticle.title}
+            author={this.props.selectedArticle.created_by} 
+          />
+          <ArticleText 
+            body={this.props.selectedArticle.body} 
+          />
+          <hr />
+          <div className="voteAndComment">
+            <VoteButton 
+              voteCount={this.props.selectedArticle.votes} 
+            />
+            <NewComment 
+              postComment={this.props.addCommentsByArticleID}
+              article_id={this.props.match.params.article_id} 
+            />
+          </div>
+          <hr />
+            <CommentList 
+              selectedComments={this.props.selectedComments} 
+            />               
+        </div>
+        <Profile />
+      </div>
+    );
+  }
 }
 
 function mapDispatchToProps (dispatch) {
@@ -61,10 +70,10 @@ function MapStateToProps (state) {
   };
 }
 
-export default connect(MapStateToProps, mapDispatchToProps) (ArticlePage);
-
 ArticlePage.proptypes = {
     selectedArticle: PropTypes.object.isRequired,
     selectedComments: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired
 };
+
+export default connect(MapStateToProps, mapDispatchToProps) (ArticlePage);

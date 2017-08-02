@@ -4,18 +4,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // import * as actions from '../actions/actions';
 
+// TODO: map topics to navbar links
+
 class Navbar extends React.Component {
   // componentDidMount () {
   //   this.props.fetchTopics ();
   // }
   render () {
-    console.log(this.props);
-    console.log(this.state);
     return (
         <nav>
           <h1>Northcoders News</h1>
-{/* 
-          {this.props.topics.map(topic => <Link key={topic.slug} className="topicLink" to={`/topics/${topic.slug}/articles`}>{topic.slug}</Link>)} */}
+          {/* {this.props.topics.map(topic => <Link key={topic.slug} className="topicLink" to={`/topics/${topic.slug}/articles`}>{topic.slug}</Link>)} */}
           <Link className="topicLink" to="/">Home</Link>
           <Link className="topicLink" to="/topics/football/articles">Football</Link>
           <Link className="topicLink" to="/topics/cooking/articles">Cooking</Link>
