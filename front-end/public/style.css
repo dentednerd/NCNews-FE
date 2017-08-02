@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Zilla+Slab:700');
+
+html, body {
+  background-color:#eee;
+  font: normal 14px 'Open Sans', sans-serif;
+}
+
+a {
+    color: #22f;
+}
+
+.title {
+  font-family: 'Zilla Slab', serif;
+}
+
+.subtitle {
+  font-family: 'Open Sans', sans-serif;
+}
+
+nav {
+  display:flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items:flex-end;
+  background-color:#ddf;
+  margin-bottom:20px;
+  padding:0;
+  height: 60px;
+  box-shadow: 1px 1px 5px #777;
+}
+
+nav .topicLink {
+  background-color:#fff;
+  padding:10px;
+  margin:0 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+nav .topicLink:hover {
+  background-color: #aaf;
+}
+
+nav h1 {
+  font-family: 'Zilla Slab', serif;
+  margin: 20px 40px;
+  align-self:center;
+  line-height:60px;
+}
+
+.columns {
+  padding: 0 20px;
+}
+
+/* ArticleList */
+
+ .profile {
+  padding:20px;
+  margin: 10px;
+  font-size:12px;
+} 
+
+/* ArticleCard  */
+
+h2, h3 {
+  font-family: 'Zilla Slab', serif;
+}
+
+.articleLink {
+    color: #22f;
+}
+
+.topic {
+  text-transform:capitalize;
+}
+
+.media-left, .vote {
+  background-color:#aaf;
+  width:10%;
+  padding:10px;
+  font-size:3vw;
+  font-weight:bold;
+  color:#fff;
+  text-align:center;
+  display: flex;
+  flex-flow:row nowrap;
+  justify-content:space-around;
+  align-items:center;
+}
+
+.media-left:after, .vote:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+/* ArticlePage  */
+
+.articlePage {
+  font-size: 20px;
+}
+
+.vote {
+  margin: 10px 0;
+}
+
+.voteButton {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items:center;
+}
+
+.voteButton button {
+  background-color:transparent;
+  margin: 5px;
+  padding: 5px;
+  border:none;
+  font-size: 12px;
+  color: #fff;
+} 
+
+.voteButton button:hover {
+  background-color:#99f;
+}
+
+.postedComment {
+  margin: 10px 0;
+  width: 50%;
+  border-radius: 5px;
+  border: solid 1px #aaa;
+  box-shadow: 1px 1px 3px #aaa;
+  background-color:#fff;
+  padding:10px;
+}
+
+.newComment {
+  width:50%;
+}
+
+.commentBody{
+  font-size:14px;
+}
+
+.commentInfo {
+  font-size: 12px;
+  line-height:12px;
+  margin:0;
+  padding:0;
+  color:#888;
+}
