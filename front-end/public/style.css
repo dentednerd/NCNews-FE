@@ -6,7 +6,7 @@ html, body {
 }
 
 a {
-    color: #22f;
+    color: #222;
 }
 
 .title {
@@ -22,30 +22,37 @@ nav {
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items:flex-end;
-  background-color:#ddf;
+  background: -webkit-radial-gradient(center bottom, rgba(160, 201, 215, 0.8) 0%, rgba(160, 201, 215, 0) 70%), -webkit-linear-gradient(top, black 0%,#282F44 6%,#2C3551 52%,#354262 91%,#050C54 100%);
+  /* background-color:#ddf; */
   margin-bottom:20px;
   padding:0;
   height: 60px;
-  box-shadow: 1px 1px 5px #777;
-}
+  box-shadow: 1px 1px 5px #000;
+  color:#FFF;
+} 
 
 nav .topicLink {
-  background-color:#fff;
+  background-color:rgba(255,255,255,1);
   padding:10px;
   margin:0 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  box-shadow: -1px -1px 3px #000;
 }
 
 nav .topicLink:hover {
-  background-color: #aaf;
+  background-color: rgba(200, 200, 255, 0.5);
+  box-shadow: inset 1px 1px 3px #000;
 }
 
 nav h1 {
   font-family: 'Zilla Slab', serif;
+  font-size:50px;
   margin: 20px 40px;
   align-self:center;
   line-height:60px;
+  color:#fff;
+  text-shadow: -1px -1px 3px #000;
 }
 
 .columns {
@@ -66,6 +73,10 @@ h2, h3 {
   font-family: 'Zilla Slab', serif;
 }
 
+#ArticleList .title:not(:last-child), #TopicPage .title:not(:last-child) {
+    margin-bottom:0;
+}
+
 .topic {
   text-transform:capitalize;
 }
@@ -84,7 +95,7 @@ h2, h3 {
   align-items:center;
 }
 
-.media-left:after, .vote:after {
+.media-left:after {
   content: "";
   display: block;
   padding-bottom: 100%;
@@ -109,7 +120,7 @@ h2, h3 {
   display:flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
-  align-items:flex-start;
+  align-items: flex-start;
 }
 
 /* ArticlePage  */
@@ -118,12 +129,26 @@ h2, h3 {
   font-size: 20px;
 }
 
+.articleTitle {
+  margin-bottom:20px;
+}
+
+.voteAndComment {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
 .vote {
-  margin: 10px 0;
+  margin-right: 10px;
+  min-height: 100%;
 }
 
 .voteCount {
   margin: 0 auto;
+  height:100%;
+  padding-bottom: 5px;
 }
 
 .voteButton {
@@ -133,19 +158,18 @@ h2, h3 {
   align-items:center;
 }
 
-.voteButton button {
-  background-color:transparent;
+.voteButton button, .submitButton {
+  background-color:#aaf;
   margin: 5px;
   padding: 5px;
   border:none;
   font-size: 24px;
   font-weight:bold;
   color: #fff;
-  width:100%;
 } 
 
-.voteButton button:hover {
-  background-color:#99f;
+.voteButton button:hover, .submitButton:hover {
+  background-color:#77f;
 }
 
 .postedComment {
@@ -159,7 +183,7 @@ h2, h3 {
 }
 
 .newComment {
-  width:50%;
+  width:39%;
 }
 
 .commentBody{

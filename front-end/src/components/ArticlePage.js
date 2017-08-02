@@ -21,11 +21,16 @@ class ArticlePage extends React.Component {
         return (
             <div className="articlePage columns">
                 <div className="column is-three-quarters">
-                <ArticleTitleBar title={this.props.selectedArticle.title} />
+                <ArticleTitleBar title={this.props.selectedArticle.title}
+                author={this.props.selectedArticle.created_by} />
                 <ArticleText body={this.props.selectedArticle.body} />
-                <VoteButton voteCount={this.props.selectedArticle.votes} />
-                <NewComment postComment={this.props.addCommentsByArticleID}
+                <hr />
+                <div className="voteAndComment">
+                    <VoteButton voteCount={this.props.selectedArticle.votes} />
+                    <NewComment postComment={this.props.addCommentsByArticleID}
                                 article_id={this.props.match.params.article_id} />
+                </div>
+                <hr />
                 <CommentList selectedComments={this.props.selectedComments} />               
                 </div>
                 <Profile />

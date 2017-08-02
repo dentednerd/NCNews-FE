@@ -13,7 +13,7 @@ class Navbar extends React.Component {
     console.log(this.state);
     return (
         <nav>
-          <h1 className="title is-1">Northcoders News</h1>
+          <h1>Northcoders News</h1>
 {/* 
           {this.props.topics.map(topic => <Link key={topic.slug} className="topicLink" to={`/topics/${topic.slug}/articles`}>{topic.slug}</Link>)} */}
           <Link className="topicLink" to="/">Home</Link>

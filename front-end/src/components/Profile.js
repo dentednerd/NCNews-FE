@@ -11,8 +11,16 @@ class Profile extends React.Component {
           <h3 className="subtitle is-6">northcoder</h3>
           </div>
         </div>
-        Make yourself at home.<br />
-        Search Bar
+        Northcoders News has all your latest updates.<br />
+        <hr />
+        <form>
+          <div className="search">
+            <div className="control">
+              <input id="search" className="input" type="text" placeholder="Search" />
+            </div>
+          </div>
+        </form>
+        <hr />
       </div>
     );
   }

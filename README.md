@@ -65,6 +65,8 @@ There are also some methods that can be called on new or retrieved documents. Th
 | `DELETE /api/comments/:comment_id` | Deletes a comment |
 | `GET /api/users/:username` | Returns a JSON object with the profile data for the specified user. |
 
+---
+
 ### Northcoders News Front-End
 
 Northcoders News is a social news aggregation, web content rating, and discussion website. It is similar to [Reddit](https://www.reddit.com/)
@@ -99,9 +101,7 @@ You will be getting the data from your implementation of the Northcoders News AP
 
 ### Users
 
-Users are available from the API and have already been busy adding comments to the articles!
-There is also a 'northcoder' user. Any comments you add will belong to the 'northcoder' user and you will
-also be able to delete those comments using the API.
+Users are available from the API and have already been busy adding comments to the articles! There is also a 'northcoder' user. Any comments you add will belong to the 'northcoder' user and you will also be able to delete those comments using the API.
 
 ### Extra credit
 
