@@ -189,14 +189,76 @@ export function fetchTopicsError (error) {
   };
 }
 
-// incrementVotes
-export function incrementVotes () {
+// incrementArticleVotes
+export function articleVoteUp (id) {
     console.log('voted up!');
 // add 1 to voteCount
+return function (dispatch) {
+    dispatch(articleVoteUpRequest());
+    axios.put(`${ROOT}/articles/${id}?vote=up`)
+      .then(res => {
+        dispatch(articleVoteUpSuccess(res.data.voteCount));
+      })
+      .catch(err => {
+        dispatch(articleVoteUpError(err));
+      });
+  };
+}
+
+export function articleVoteUpRequest (id) {
+  return {
+    type: types.ARTICLE_VOTE_UP_REQUEST,
+    payload: id
+  };
+}
+
+export function articleVoteUpSuccess (upvote) {
+  return {
+    type: types.ARTICLE_VOTE_UP_SUCCESS,
+    payload: upvote
+  };
+}
+
+export function articleVoteUpError (error) {
+  return {
+    type: types.ARTICLE_VOTE_UP_ERROR,
+    payload: error
+  };
 }
 
 // decrementVotes
-export function decrementVotes () {
+export function articleVoteDown (id) {
     console.log('voted down!');
 // take 1 from voteCount
+return function (dispatch) {
+    dispatch(articleVoteDownRequest());
+    axios.put(`${ROOT}/articles/${id}?vote=down`)
+      .then(res => {
+        dispatch(articleVoteDownSuccess(res.data.voteCount));
+      })
+      .catch(err => {
+        dispatch(articleVoteDownError(err));
+      });
+  };
+}
+
+export function articleVoteDownRequest (id) {
+  return {
+    type: types.ARTICLE_VOTE_DOWN_REQUEST,
+    payload: id
+  };
+}
+
+export function articleVoteDownSuccess (downvote) {
+  return {
+    type: types.ARTICLE_VOTE_DOWN_SUCCESS,
+    payload: downvote
+  };
+}
+
+export function articleVoteDownError (error) {
+  return {
+    type: types.ARTICLE_VOTE_DOWN_ERROR,
+    payload: error
+  };
 }

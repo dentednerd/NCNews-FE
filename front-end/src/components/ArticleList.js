@@ -42,4 +42,5 @@ function MapStateToProps (state) {
     loading :state.loading
   };
 }
+
 export default connect(MapStateToProps, mapDispatchToProps) (ArticleList);

@@ -12,6 +12,7 @@ const initialState = {
 function reducer (prevState = initialState, action) {
   if (!action) return prevState;
 
+// fetchArticles
   if (action.type === types.FETCH_ARTICLES_REQUESTS) {
     const newState = Object.assign({}, prevState);
     newState.loading = true;
@@ -33,6 +34,7 @@ function reducer (prevState = initialState, action) {
     return newState;
   }
 
+  // fetchArticlesByID
   if (action.type === types.FETCH_ARTICLES_BY_ID_REQUESTS) {
     const newState = Object.assign({}, prevState);
     newState.loading = true;
@@ -55,6 +57,7 @@ function reducer (prevState = initialState, action) {
     return newState;
   }
 
+  // fetchCommentsByArticleID
   if (action.type === types.FETCH_COMMENTS_BY_ARTICLE_ID_REQUESTS) {
     const newState = Object.assign({}, prevState);
     newState.loading = true;
@@ -78,6 +81,7 @@ function reducer (prevState = initialState, action) {
     return newState;
   }
 
+// addCommentsByArticleID
   if (action.type === types.ADD_COMMENTS_BY_ARTICLE_ID_POST) {
     const newState = Object.assign({}, prevState);
     newState.loading = true;
@@ -100,6 +104,46 @@ function reducer (prevState = initialState, action) {
     newState.error = action.error;
     return newState;
   }
+
+// articleVoteUp
+    if (action.type === types.ARTICLE_VOTE_UP_REQUEST) {
+      const newState = Object.assign({}, prevState);
+      newState.loading = true;
+      return newState;
+    }
+
+    if (action.type === types.ARTICLE_VOTE_UP_SUCCESS) {
+      const newState = Object.assign({}, prevState);
+      newState.loading = false;
+      newState.voteCount = prevState.voteCount++;
+      return newState;
+    }
+
+    if (action.type === types.ARTICLE_VOTE_UP_ERROR) {
+      const newState = Object.assign({}, prevState);
+      newState.error = action.error;
+      return newState;
+    }
+
+// articleVoteDown
+    if (action.type === types.ARTICLE_VOTE_DOWN_REQUEST) {
+      const newState = Object.assign({}, prevState);
+      newState.loading = true;
+      return newState;
+    }
+
+    if (action.type === types.ARTICLE_VOTE_DOWN_SUCCESS) {
+      const newState = Object.assign({}, prevState);
+      newState.loading = false;
+      newState.voteCount = prevState.voteCount--;
+      return newState;
+    }
+
+    if (action.type === types.ARTICLE_VOTE_DOWN_ERROR) {
+      const newState = Object.assign({}, prevState);
+      newState.error = action.error;
+      return newState;
+    }
 
   return prevState;
 }

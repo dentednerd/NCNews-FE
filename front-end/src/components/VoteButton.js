@@ -4,18 +4,16 @@ import PropTypes from 'prop-types';
 import * as actions from '../actions/actions';
 
 class VoteButton extends React.Component {
-  componentDidMount () {
-    this.props.hiGuys();    
-  }
-  render () {
+    render () {
     console.log('VoteButton props are...', this.props);
     return (
       <div className="vote">
         <span className="voteCount">
             {this.props.voteCount}
         <div className="voteButton">
-          <button onClick={actions.incrementVotes}>+</button>
-          <button onClick={actions.decrementVotes}>-</button>
+          {}
+          <button onClick={this.props.articleVoteUp.bind(this)}>+</button>
+          <button onClick={this.props.articleVoteDown.bind(this)}>-</button>
         </div>   
         </span>
       </div>
@@ -23,17 +21,27 @@ class VoteButton extends React.Component {
   }
 }
 
-function mapHiGuysToProps () {
+function mapDispatchToProps (dispatch) {
   return {
-    hiGuys: () => {
-      actions.hiGuys();
+    articleVoteUp: function () {
+      dispatch(actions.articleVoteUp(this.props.id));
+    },
+    articleVoteDown: () => {
+      dispatch(actions.articleVoteDown(this.props.id));
     }
   };
 }
 
+function mapStateToProps (state) {
+  console.log(state)
+  return {};
+}
+
 VoteButton.proptypes = {
     voteCount: PropTypes.number.isRequired,
-    hiGuys: PropTypes.func
+    id: PropTypes.string.isRequired,
+    articleVoteUp: PropTypes.func,
+    articleVoteDown: PropTypes.func
 };
 
-export default connect(mapHiGuysToProps)(VoteButton);
+export default connect(mapStateToProps, mapDispatchToProps)(VoteButton);

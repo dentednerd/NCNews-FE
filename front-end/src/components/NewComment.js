@@ -17,7 +17,7 @@ constructor (props) {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 }
-    render() {
+    render () {
         return (
             <div className="newComment">
                 <form onSubmit={this.handleSubmit}>
