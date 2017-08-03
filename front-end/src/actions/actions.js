@@ -2,6 +2,7 @@ import * as types from './types';
 import axios from  'axios';
 import {ROOT} from '../../config';
 
+// fetchArticles
 export function fetchArticles () {
     return function (dispatch) {
         dispatch(fetchArticlesRequest());
@@ -13,51 +14,6 @@ export function fetchArticles () {
         .catch(err => {
             console.log(err)
             dispatch(fetchArticlesError(err));
-        });
-    };
-}
-
-export function fetchArticlesByID (id) {
-    return function (dispatch) {
-        dispatch(fetchArticlesByIDRequest(id));
-        axios.get(`${ROOT}/articles/${id}`)
-        .then(res => {
-            console.log('res', res.data)
-            dispatch(fetchArticlesByIDSuccess(res.data.article));
-        })
-        .catch(err => {
-            console.log(err)
-            dispatch(fetchArticlesByIDError(err));
-        });
-    };
-}
-
-export function fetchCommentsByArticleID (id) {
-    return function (dispatch) {
-        dispatch(fetchCommentsByArticleIDRequest(id));
-        axios.get(`${ROOT}/articles/${id}/comments`)
-        .then(res => {
-            console.log('cooment res', res.data);
-            dispatch(fetchCommentsByArticleIDSuccess(res.data.comments));
-        })
-        .catch(err => {
-            console.log(err);
-            dispatch(fetchCommentsByArticleIDError(err));
-        });
-    };
-}
-
-export function addCommentsByArticleID (id, data) {
-    return function (dispatch) {
-        dispatch(addCommentsByArticleIDPost(id, data));
-        axios.post(`${ROOT}/articles/${id}/comments`, data)
-        .then(res => {
-            console.log('post res', res.data);
-            dispatch(addCommentsByArticleIDSuccess(res.data.comments));
-        })
-        .catch(err => {
-            console.log(err);
-            dispatch(addCommentsByArticleIDError(err));
         });
     };
 }
@@ -82,6 +38,22 @@ export function fetchArticlesError (error) {
     };
 }
 
+// fetchArticlesByID
+export function fetchArticlesByID (id) {
+    return function (dispatch) {
+        dispatch(fetchArticlesByIDRequest(id));
+        axios.get(`${ROOT}/articles/${id}`)
+        .then(res => {
+            console.log('res', res.data)
+            dispatch(fetchArticlesByIDSuccess(res.data.article));
+        })
+        .catch(err => {
+            console.log(err)
+            dispatch(fetchArticlesByIDError(err));
+        });
+    };
+}
+
 export function fetchArticlesByIDRequest (id) {
     return {
         type: types.FETCH_ARTICLES_BY_ID_REQUESTS,
@@ -103,6 +75,22 @@ export function fetchArticlesByIDError (error) {
     };
 }
 
+//fetchCommentsByArticleID
+export function fetchCommentsByArticleID (id) {
+    return function (dispatch) {
+        dispatch(fetchCommentsByArticleIDRequest(id));
+        axios.get(`${ROOT}/articles/${id}/comments`)
+        .then(res => {
+            console.log('cooment res', res.data);
+            dispatch(fetchCommentsByArticleIDSuccess(res.data.comments));
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch(fetchCommentsByArticleIDError(err));
+        });
+    };
+}
+
 export function fetchCommentsByArticleIDRequest (id) {
     return {
         type: types.FETCH_COMMENTS_BY_ARTICLE_ID_REQUESTS,
@@ -121,6 +109,22 @@ export function fetchCommentsByArticleIDError (error) {
     return {
         type: types.FETCH_COMMENTS_BY_ARTICLE_ID_ERROR,
         payload: error
+    };
+}
+
+// addCommentsByArticleID
+export function addCommentsByArticleID (id, data) {
+    return function (dispatch) {
+        dispatch(addCommentsByArticleIDPost(id, data));
+        axios.post(`${ROOT}/articles/${id}/comments`, data)
+        .then(res => {
+            console.log('post res', res.data);
+            dispatch(addCommentsByArticleIDSuccess(res.data.comments));
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch(addCommentsByArticleIDError(err));
+        });
     };
 }
 
@@ -146,12 +150,13 @@ export function addCommentsByArticleIDError (error) {
     };
 }
 
+// fetchTopics
 export function fetchTopics () {
   return function (dispatch) {
     dispatch(fetchTopicsRequest());
     axios.get(`${ROOT}/topics`)
       .then(res => {
-        dispatch(fetchTopicsSucess(res.data.topics));
+        dispatch(fetchTopicsSuccess(res.data.topics));
       })
       .catch(err => {
         dispatch(fetchTopicsError(err));
@@ -165,7 +170,7 @@ export function fetchTopicsRequest () {
   };
 }
 
-export function fetchTopicsSucess (topics) {
+export function fetchTopicsSuccess (topics) {
   return {
     type: types.FETCH_TOPICS_SUCCESS,
     payload: topics
