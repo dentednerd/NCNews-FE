@@ -47,12 +47,14 @@ nav .topicLink:hover {
 
 nav h1 {
   font-family: 'Zilla Slab', serif;
-  font-size:50px;
+  font-size:4vw;
   margin: 20px 40px;
   align-self:center;
   line-height:60px;
   color:#fff;
   text-shadow: -1px -1px 3px #000;
+  white-space:nowrap;
+  overflow:hidden;
 }
 
 .columns {
