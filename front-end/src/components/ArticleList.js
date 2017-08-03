@@ -40,7 +40,6 @@ function MapStateToProps (state) {
   return {
     articles: state.articles,
     loading :state.loading
-
-  }
+  };
 }
 export default connect(MapStateToProps, mapDispatchToProps) (ArticleList);

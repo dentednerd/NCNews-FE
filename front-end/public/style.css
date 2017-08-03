@@ -82,7 +82,7 @@ h2, h3 {
 }
 
 .media-left, .vote {
-  background-color:#aaf;
+  background-color:#2C3551;
   width:10%;
   padding:10px;
   font-size:3vw;
@@ -159,7 +159,7 @@ h2, h3 {
 }
 
 .voteButton button, .submitButton {
-  background-color:#aaf;
+  background-color:#2C3551;
   margin: 5px;
   padding: 5px;
   border:none;

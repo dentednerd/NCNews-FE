@@ -2,17 +2,22 @@ import * as types from './types';
 import axios from  'axios';
 import {ROOT} from '../../config';
 
+// tester!
+export function hiGuys () {
+    console.log('Hello');
+}
+
 // fetchArticles
 export function fetchArticles () {
     return function (dispatch) {
         dispatch(fetchArticlesRequest());
         axios.get(`${ROOT}/articles`)
         .then(res => {
-            console.log(res.data)
+            console.log(res.data);
             dispatch(fetchArticlesSuccess(res.data.articles));
         })
         .catch(err => {
-            console.log(err)
+            console.log(err);
             dispatch(fetchArticlesError(err));
         });
     };
@@ -182,4 +187,16 @@ export function fetchTopicsError (error) {
     type: types.FETCH_TOPICS_ERROR,
     payload: error
   };
+}
+
+// incrementVotes
+export function incrementVotes () {
+    console.log('voted up!');
+// add 1 to voteCount
+}
+
+// decrementVotes
+export function decrementVotes () {
+    console.log('voted down!');
+// take 1 from voteCount
 }
