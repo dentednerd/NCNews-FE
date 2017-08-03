@@ -115,7 +115,8 @@ function reducer (prevState = initialState, action) {
     if (action.type === types.ARTICLE_VOTE_UP_SUCCESS) {
       const newState = Object.assign({}, prevState);
       newState.loading = false;
-      newState.voteCount = prevState.voteCount++;
+      newState.voteCount++;
+      console.log('newState: ', newState);
       return newState;
     }
 
@@ -135,7 +136,8 @@ function reducer (prevState = initialState, action) {
     if (action.type === types.ARTICLE_VOTE_DOWN_SUCCESS) {
       const newState = Object.assign({}, prevState);
       newState.loading = false;
-      newState.voteCount = prevState.voteCount--;
+      newState.voteCount--;
+      console.log('newState: ', newState);
       return newState;
     }
 

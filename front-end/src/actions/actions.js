@@ -13,7 +13,7 @@ export function fetchArticles () {
         dispatch(fetchArticlesRequest());
         axios.get(`${ROOT}/articles`)
         .then(res => {
-            console.log(res.data);
+            console.log('fetchArticles res data: ', res.data);
             dispatch(fetchArticlesSuccess(res.data.articles));
         })
         .catch(err => {
@@ -49,7 +49,7 @@ export function fetchArticlesByID (id) {
         dispatch(fetchArticlesByIDRequest(id));
         axios.get(`${ROOT}/articles/${id}`)
         .then(res => {
-            console.log('res', res.data)
+            console.log('Article res: ', res.data)
             dispatch(fetchArticlesByIDSuccess(res.data.article));
         })
         .catch(err => {
@@ -86,7 +86,7 @@ export function fetchCommentsByArticleID (id) {
         dispatch(fetchCommentsByArticleIDRequest(id));
         axios.get(`${ROOT}/articles/${id}/comments`)
         .then(res => {
-            console.log('cooment res', res.data);
+            console.log('Comment res data: ', res.data);
             dispatch(fetchCommentsByArticleIDSuccess(res.data.comments));
         })
         .catch(err => {

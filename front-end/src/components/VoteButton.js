@@ -5,7 +5,7 @@ import * as actions from '../actions/actions';
 
 class VoteButton extends React.Component {
     render () {
-    console.log('VoteButton props are...', this.props);
+    console.log('VoteButton props: ', this.props);
     return (
       <div className="vote">
         <span className="voteCount">
@@ -26,15 +26,16 @@ function mapDispatchToProps (dispatch) {
     articleVoteUp: function () {
       dispatch(actions.articleVoteUp(this.props.id));
     },
-    articleVoteDown: () => {
+    articleVoteDown: function () {
       dispatch(actions.articleVoteDown(this.props.id));
     }
   };
 }
 
 function mapStateToProps (state) {
-  console.log(state)
-  return {};
+  return {
+    voteCount: state.voteCount
+  };
 }
 
 VoteButton.proptypes = {
