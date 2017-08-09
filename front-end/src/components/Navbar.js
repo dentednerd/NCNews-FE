@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 class Navbar extends React.Component {
   render () {
-    console.log(this.props);
     return (
         <nav>
           <h1>Northcoders News</h1>

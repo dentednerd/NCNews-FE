@@ -131,6 +131,10 @@ h2, h3 {
   align-items: flex-start;
 }
 
+.profileName .title {
+  font-size: 2vw;
+}
+
 /* ArticlePage  */
 
 .articlePage {
@@ -144,13 +148,15 @@ h2, h3 {
 .voteAndComment {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: stretch;
+  align-items: stretch;
 }
 
 .vote {
   margin-right: 10px;
   min-height: 100%;
+  /* display:table-cell; */
+  
 }
 
 .voteCount {

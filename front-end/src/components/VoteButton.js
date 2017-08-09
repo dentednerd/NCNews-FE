@@ -37,8 +37,6 @@ function mapDispatchToProps (dispatch) {
 
 function mapStateToProps (state) {
   return state;
-  // state.selectedArticle.votes = this.props.votes;
-  // console.log('VoteButton NEWSTATE: ', state.selectedArticle.votes);
 }
 
 VoteButton.propTypes = {
