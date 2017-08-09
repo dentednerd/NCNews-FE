@@ -49,7 +49,6 @@ export function fetchArticlesByID (id) {
         dispatch(fetchArticlesByIDRequest(id));
         axios.get(`${ROOT}/articles/${id}`)
         .then(res => {
-            console.log('Article res: ', res.data)
             dispatch(fetchArticlesByIDSuccess(res.data.article));
         })
         .catch(err => {
@@ -86,7 +85,6 @@ export function fetchCommentsByArticleID (id) {
         dispatch(fetchCommentsByArticleIDRequest(id));
         axios.get(`${ROOT}/articles/${id}/comments`)
         .then(res => {
-            console.log('Comment res data: ', res.data);
             dispatch(fetchCommentsByArticleIDSuccess(res.data.comments));
         })
         .catch(err => {
@@ -191,13 +189,12 @@ export function fetchTopicsError (error) {
 
 // incrementArticleVotes
 export function articleVoteUp (id) {
-    console.log('voted up!');
 // add 1 to voteCount
 return function (dispatch) {
     dispatch(articleVoteUpRequest());
     axios.put(`${ROOT}/articles/${id}?vote=up`)
       .then(res => {
-        dispatch(articleVoteUpSuccess(res.data.voteCount));
+        dispatch(articleVoteUpSuccess(res));
       })
       .catch(err => {
         dispatch(articleVoteUpError(err));
@@ -212,10 +209,9 @@ export function articleVoteUpRequest (id) {
   };
 }
 
-export function articleVoteUpSuccess (upvote) {
+export function articleVoteUpSuccess () {
   return {
-    type: types.ARTICLE_VOTE_UP_SUCCESS,
-    payload: upvote
+    type: types.ARTICLE_VOTE_UP_SUCCESS
   };
 }
 
@@ -228,13 +224,12 @@ export function articleVoteUpError (error) {
 
 // decrementVotes
 export function articleVoteDown (id) {
-    console.log('voted down!');
 // take 1 from voteCount
 return function (dispatch) {
     dispatch(articleVoteDownRequest());
     axios.put(`${ROOT}/articles/${id}?vote=down`)
       .then(res => {
-        dispatch(articleVoteDownSuccess(res.data.voteCount));
+        dispatch(articleVoteDownSuccess(res));
       })
       .catch(err => {
         dispatch(articleVoteDownError(err));
@@ -249,10 +244,9 @@ export function articleVoteDownRequest (id) {
   };
 }
 
-export function articleVoteDownSuccess (downvote) {
+export function articleVoteDownSuccess () {
   return {
-    type: types.ARTICLE_VOTE_DOWN_SUCCESS,
-    payload: downvote
+    type: types.ARTICLE_VOTE_DOWN_SUCCESS
   };
 }
 

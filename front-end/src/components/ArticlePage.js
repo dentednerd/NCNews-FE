@@ -16,6 +16,12 @@ class ArticlePage extends React.Component {
     this.props.fetchCommentsByArticleID(this.props.match.params.article_id);
   }
 
+  componentWillReceiveProps() {
+        // console.log('ArticlePage NEXT PROPS: ', nextProps.votes);
+        // const differentVote = this.props.selectedArticle.votes !== nextProps.votes;
+        // return differentVote;
+  }
+
   render () {
     return (
       <div className="articlePage columns">
@@ -30,7 +36,7 @@ class ArticlePage extends React.Component {
           <hr />
           <div className="voteAndComment">
             <VoteButton 
-              voteCount={this.props.selectedArticle.votes} 
+              votes={this.props.selectedArticle.votes} 
               id={this.props.match.params.article_id}
             />
             <NewComment 
@@ -67,7 +73,7 @@ function MapStateToProps (state) {
   return {
     selectedArticle: state.selectedArticle,
     selectedComments: state.selectedComments,
-    loading :state.loading
+    loading: state.loading
   };
 }
 

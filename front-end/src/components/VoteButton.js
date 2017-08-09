@@ -4,12 +4,15 @@ import PropTypes from 'prop-types';
 import * as actions from '../actions/actions';
 
 class VoteButton extends React.Component {
-    render () {
-    console.log('VoteButton props: ', this.props);
+  // componentWillReceiveProps (nextProps) {
+  //   console.log('VoteButton has received props: ', this.props.votes);
+  //   console.log('VoteButton NEXT PROPS: ', nextProps.votes);
+  // }
+  render () {
     return (
       <div className="vote">
         <span className="voteCount">
-            {this.props.voteCount}
+            {this.props.votes}
         <div className="voteButton">
           {}
           <button onClick={this.props.articleVoteUp.bind(this)}>+</button>
@@ -33,13 +36,13 @@ function mapDispatchToProps (dispatch) {
 }
 
 function mapStateToProps (state) {
-  return {
-    voteCount: state.voteCount
-  };
+  return state;
+  // state.selectedArticle.votes = this.props.votes;
+  // console.log('VoteButton NEWSTATE: ', state.selectedArticle.votes);
 }
 
-VoteButton.proptypes = {
-    voteCount: PropTypes.number.isRequired,
+VoteButton.propTypes = {
+    votes: PropTypes.number,
     id: PropTypes.string.isRequired,
     articleVoteUp: PropTypes.func,
     articleVoteDown: PropTypes.func
