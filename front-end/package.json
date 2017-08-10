@@ -8,7 +8,9 @@
     "posttest": "npm run lint",
     "precommit": "npm run lint",
     "dev": "webpack-dev-server",
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
+    "postinstall": "webpack -p --config ./webpack.prod.config.js --progress"
   },
   "author": "",
   "license": "ISC",
