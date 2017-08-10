@@ -60,7 +60,8 @@ function postCommentToArticle (req, res, next) {
     const freshComment = new Comments(commentObj);
     freshComment.save(function (err, comments) {
         if (err) return next({status:500, msg:err});
-        else {
+        else 
+          {
             res.status(200).json({comments});
         }
     });
