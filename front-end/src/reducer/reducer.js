@@ -90,6 +90,7 @@ function reducer (prevState = initialState, action) {
 
   if (action.type === types.FETCH_COMMENTS_BY_ARTICLE_ID_SUCCESS) {
     const newState = Object.assign({}, prevState);
+    console.log('Payload: ', action.payload)
     newState.selectedComments = newState.selectedComments.push(action.payload);
     newState.loading = false;
     return newState;

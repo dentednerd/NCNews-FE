@@ -117,7 +117,7 @@ export function addCommentsByArticleID (id, data) {
         axios.post(`${ROOT}/articles/${id}/comments`, data)
         .then(res => {
             console.log('Comment data: ', res.data);
-            dispatch(addCommentsByArticleIDSuccess(res.data.comment));
+            dispatch(addCommentsByArticleIDSuccess(res.data.comments));
         })
         .catch(err => {
             console.log(err);

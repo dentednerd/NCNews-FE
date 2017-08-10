@@ -10,10 +10,6 @@ class NewComment extends React.Component {
       comment: {
       value: '',
       touched: false
-      },
-    name: {
-      value: '',
-      touched: false
       }
     };
   this.handleChange = this.handleChange.bind(this);
@@ -22,12 +18,8 @@ class NewComment extends React.Component {
   render () {
     return (
       <div className="newComment">
+        <h3>Leave your comment:</h3>
         <form onSubmit={this.handleSubmit}>
-          <div className="field name">
-            <div className="control">
-              <input id="name-input" className="input" type="text" placeholder="Name" onChange={this.handleChange.bind(null, 'name')} />
-            </div>
-          </div>
 
           <div className="field comment">
             <div className="control">
@@ -56,7 +48,8 @@ class NewComment extends React.Component {
 
   handleSubmit (event) {
     event.preventDefault();
-    this.props.postComment(this.props.article_id, this.state);
+    let data = {comment: this.state.comment.value};
+    this.props.postComment(this.props.article_id, data);
   }
 }
 
@@ -70,7 +63,6 @@ function mapDispatchToProps (dispatch) {
 
 function mapStateToProps (state) {
   return {
-    name: state.name,
     comment: state.comment
   };
 }
