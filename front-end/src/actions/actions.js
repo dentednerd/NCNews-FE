@@ -2,11 +2,6 @@ import * as types from './types';
 import axios from  'axios';
 import {ROOT} from '../../config';
 
-// tester!
-export function hiGuys () {
-    console.log('Hello');
-}
-
 // fetchArticles
 export function fetchArticles () {
     return function (dispatch) {
@@ -122,7 +117,7 @@ export function addCommentsByArticleID (id, data) {
         axios.post(`${ROOT}/articles/${id}/comments`, data)
         .then(res => {
             console.log('Comment data: ', res.data);
-            dispatch(addCommentsByArticleIDSuccess(res.data.comments));
+            dispatch(addCommentsByArticleIDSuccess(res.data.comment));
         })
         .catch(err => {
             console.log(err);
@@ -139,10 +134,10 @@ export function addCommentsByArticleIDPost (id, comment) {
     };
 }
 
-export function addCommentsByArticleIDSuccess (comments) {
+export function addCommentsByArticleIDSuccess (comment) {
     return {
         type: types.ADD_COMMENTS_BY_ARTICLE_ID_SUCCESS,
-        payload: comments 
+        payload: comment
     };
 }
 

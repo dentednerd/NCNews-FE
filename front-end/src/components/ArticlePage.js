@@ -16,12 +16,6 @@ class ArticlePage extends React.Component {
     this.props.fetchCommentsByArticleID(this.props.match.params.article_id);
   }
 
-  componentWillReceiveProps() {
-        // console.log('ArticlePage NEXT PROPS: ', nextProps.votes);
-        // const differentVote = this.props.selectedArticle.votes !== nextProps.votes;
-        // return differentVote;
-  }
-
   render () {
     return (
       <div className="articlePage columns">

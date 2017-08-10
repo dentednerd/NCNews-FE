@@ -18,6 +18,7 @@ class NewComment extends React.Component {
     };
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
+  this.handleClickSubmit = this.handleClickSubmit.bind(this);
   }
   render () {
     return (
@@ -35,7 +36,7 @@ class NewComment extends React.Component {
             </div>
           </div>
 
-          <button className="submitButton" type="submit">
+          <button className="submitButton" type="submit" onClick={this.handleClickSubmit}>
           Submit
           </button>
         </form>
@@ -44,6 +45,7 @@ class NewComment extends React.Component {
   }
   
   handleChange (field, e) {
+    e.preventDefault();
     const newState = Object.assign({}, this.state, {
       [field]: {
         value: e.target.value,
@@ -51,17 +53,21 @@ class NewComment extends React.Component {
       }
     });
     this.setState(Object.assign(newState));
-    console.log(this.state);
   }
 
-  handleSubmit (newComment) {
-    this.props.postComment(this.props.article_id, newComment);
-    // push newComment object onto this.props.selectedComments
+  handleClickSubmit (e, newComment) {
+    e.preventDefault();
+    this.handleSubmit(newComment);
   }
 
+  handleSubmit (event) {
+    event.preventDefault();
+    console.log('Props: ', this.props);
+    this.props.postComment();
+  }
 }
 
-  function mapDispatchToProps (dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     postComment: function (newComment) {
       dispatch(actions.addCommentsByArticleID(this.props.article_id, newComment));
@@ -69,10 +75,12 @@ class NewComment extends React.Component {
   };
 }
 
-  function mapStateToProps (state) {
-    return state;
-  }
-
+function mapStateToProps (state) {
+  return {
+    name: state.name,
+    comment: state.comment
+  };
+}
 
 NewComment.propTypes = {
   article_id: PropTypes.string.isRequired,

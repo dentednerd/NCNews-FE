@@ -84,13 +84,15 @@ function reducer (prevState = initialState, action) {
 // addCommentsByArticleID
   if (action.type === types.ADD_COMMENTS_BY_ARTICLE_ID_POST) {
     const newState = Object.assign({}, prevState);
+    console.log('POST prevState: ', prevState, ' newState: ', newState);
     newState.loading = true;
     return newState;
   }
 
   if (action.type === types.FETCH_COMMENTS_BY_ARTICLE_ID_SUCCESS) {
     const newState = Object.assign({}, prevState);
-    newState.selectedComments = action.payload;
+    console.log('SUCCESS prevState: ', prevState, ' newState: ', newState);
+    newState.selectedComments.push(action.payload);
     newState.loading = false;
     return newState;
   }
