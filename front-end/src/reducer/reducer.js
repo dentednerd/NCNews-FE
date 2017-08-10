@@ -88,15 +88,14 @@ function reducer (prevState = initialState, action) {
     return newState;
   }
 
-  if (action.type === types.FETCH_COMMENTS_BY_ARTICLE_ID_SUCCESS) {
+  if (action.type === types.ADD_COMMENTS_BY_ARTICLE_ID_SUCCESS) {
     const newState = Object.assign({}, prevState);
-    console.log('Payload: ', action.payload)
     newState.selectedComments = newState.selectedComments.push(action.payload);
     newState.loading = false;
     return newState;
   }
 
-  if (action.type === types.FETCH_COMMENTS_BY_ARTICLE_ID_ERRORS) {
+  if (action.type === types.ADD_COMMENTS_BY_ARTICLE_ID_ERRORS) {
     const newState = Object.assign({}, prevState);
     newState.articles = [];
     newState.selectedArticle = {};

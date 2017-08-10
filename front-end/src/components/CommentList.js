@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import Comment from './Comment';
 
 class CommentList extends React.Component {
+    shouldComponentUpdate (nextProps) {
+        if (this.props !== nextProps) return true;
+        else return false;
+    }
+
     render () {
         return (
             <div>
