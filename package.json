@@ -2,6 +2,9 @@
   "name": "northcoders-news",
   "version": "1.0.0",
   "description": "A Reddit clone using React and Redux",
+    "engines": {
+    "node": "8.2.1"
+  },
   "main": "src/app.js",
   "scripts": {
     "test": "mocha **/*.spec.js --compilers js:babel-core/register",
@@ -9,7 +12,7 @@
     "precommit": "npm run lint",
     "dev": "webpack-dev-server",
     "lint": "eslint ./",
-    "postinstall": "webpack -p --config ./webpack.prod.config.js --progress"
+    "postinstall": "webpack -p"
   },
   "author": "",
   "license": "ISC",
