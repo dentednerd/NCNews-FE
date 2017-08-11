@@ -194,6 +194,8 @@ h2, h3 {
   box-shadow: 1px 1px 3px #aaa;
   background-color:#fff;
   padding:10px;
+  overflow:hidden;
+  word-wrap:break-word;
 }
 
 .newComment {

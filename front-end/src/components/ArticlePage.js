@@ -71,10 +71,14 @@ function MapStateToProps (state) {
   };
 }
 
-ArticlePage.proptypes = {
+ArticlePage.propTypes = {
     selectedArticle: PropTypes.object.isRequired,
     selectedComments: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    fetchArticlesByID: PropTypes.func.isRequired,
+    fetchCommentsByArticleID: PropTypes.func.isRequired,
+    addCommentsByArticleID: PropTypes.func.isRequired,
+    match: PropTypes.object.isRequired
 };
 
 export default connect(MapStateToProps, mapDispatchToProps) (ArticlePage);

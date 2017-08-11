@@ -44,10 +44,10 @@ export function fetchArticlesByID (id) {
         dispatch(fetchArticlesByIDRequest(id));
         axios.get(`${ROOT}/articles/${id}`)
         .then(res => {
-            dispatch(fetchArticlesByIDSuccess(res.data.article));
+            dispatch(fetchArticlesByIDSuccess(res.data));
         })
         .catch(err => {
-            console.log(err)
+            console.log(err);
             dispatch(fetchArticlesByIDError(err));
         });
     };
@@ -74,7 +74,7 @@ export function fetchArticlesByIDError (error) {
     };
 }
 
-//fetchCommentsByArticleID
+// fetchCommentsByArticleID
 export function fetchCommentsByArticleID (id) {
     return function (dispatch) {
         dispatch(fetchCommentsByArticleIDRequest(id));
@@ -116,6 +116,7 @@ export function addCommentsByArticleID (id, data) {
         dispatch(addCommentsByArticleIDPost(id, data));
         axios.post(`${ROOT}/articles/${id}/comments`, data)
         .then(res => {
+            console.log('Article res: ', res);
             dispatch(addCommentsByArticleIDSuccess(res.data.comments));
         })
         .catch(err => {
