@@ -13,7 +13,8 @@
     "dev": "webpack-dev-server",
     "lint": "eslint ./",
     "postinstall": "webpack -p",
-    "heroku-postbuild": "webpack -p"
+    "heroku-postbuild": "webpack -p",
+    "start": "webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
