@@ -6,9 +6,12 @@ A Reddit clone built in Mongo, Express, React, Redux and Bulma.
 
 ## Instructions
 
-1. In server, run `mongod`.
-2. In server, run `npm run start`.
-3. In front-end, run `npm run dev`.
+1. Open three terminals.
+2. In terminal #1, run `mongod`.
+3. In terminal #2, type `cd server`, then `npm run start`.
+4. The API is now accessible on port 3000.
+5. In terminal #3, type `cd front-end`, then `npm run dev`.
+6. The front-end is now accessible on port 9090.
 
 ---
 
@@ -67,7 +70,7 @@ There are also some methods that can be called on new or retrieved documents. Th
 
 ---
 
-### Northcoders News Front-End
+## Northcoders News Front-End
 
 Northcoders News is a social news aggregation, web content rating, and discussion website. It is similar to [Reddit](https://www.reddit.com/)
 
