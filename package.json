@@ -2,7 +2,7 @@
   "name": "northcoders-news",
   "version": "1.0.0",
   "description": "A Reddit clone using React and Redux",
-    "engines": {
+  "engines": {
     "node": "8.2.1"
   },
   "main": "src/app.js",
@@ -29,7 +29,7 @@
     "husky": "^0.14.3",
     "style-loader": "^0.13.2",
     "url-loader": "^0.5.8",
-    "webpack": "^2.2.1",
+    "webpack": "^2.7.0",
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
