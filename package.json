@@ -14,7 +14,8 @@
     "lint": "eslint ./",
     "postinstall": "webpack -p",
     "heroku-postbuild": "webpack -p",
-    "start": "webpack-dev-server"
+    "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
+    "start": "node ./src/components/App.js"
   },
   "author": "",
   "license": "ISC",
