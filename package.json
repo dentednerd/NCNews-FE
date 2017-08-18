@@ -2,6 +2,7 @@
   "name": "northcoders-news",
   "version": "1.0.0",
   "description": "A Reddit clone using React and Redux",
+  "homepage": "https://dentednerd.github.io/NCNews",
   "engines": {
     "node": "8.2.1"
   },
@@ -14,8 +15,9 @@
     "lint": "eslint ./",
     "postinstall": "webpack -p",
     "heroku-postbuild": "webpack -p",
-    "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
-    "start": "node ./src/components/App.js"
+    "build": "NODE_ENV=production webpack",
+    "start": "node ./src/components/App.js",
+    "deploy" : "npm run build&&gh-pages -d public"
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +30,7 @@
     "eslint": "^3.17.1",
     "eslint-plugin-jsx": "0.0.2",
     "eslint-plugin-react": "^6.10.0",
+    "gh-pages": "^1.0.0",
     "husky": "^0.14.3",
     "style-loader": "^0.13.2",
     "url-loader": "^0.5.8",
