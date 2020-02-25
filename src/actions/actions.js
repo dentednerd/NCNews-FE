@@ -1,21 +1,21 @@
 import * as types from './types';
 import axios from  'axios';
-import {ROOT} from '../../config';
+import { ROOT } from '../../config';
 
 // fetchArticles
 export function fetchArticles () {
-    return function (dispatch) {
-        dispatch(fetchArticlesRequest());
-        axios.get(`${ROOT}/articles`)
-        .then(res => {
-            console.log('fetchArticles res data: ', res.data);
-            dispatch(fetchArticlesSuccess(res.data.articles));
-        })
-        .catch(err => {
-            console.log(err);
-            dispatch(fetchArticlesError(err));
-        });
-    };
+  return function (dispatch) {
+    dispatch(fetchArticlesRequest());
+    axios.get(`${ROOT}/articles`)
+    .then(res => {
+      console.log('fetchArticles res data: ', res.data);
+      dispatch(fetchArticlesSuccess(res.data.articles));
+    })
+    .catch(err => {
+      console.log('fetchArticles error!', err);
+      dispatch(fetchArticlesError(err));
+    });
+  };
 }
 
 export function fetchArticlesRequest () {
@@ -44,7 +44,7 @@ export function fetchArticlesByID (id) {
         dispatch(fetchArticlesByIDRequest(id));
         axios.get(`${ROOT}/articles/${id}`)
         .then(res => {
-            dispatch(fetchArticlesByIDSuccess(res.data));
+            dispatch(fetchArticlesByIDSuccess(res.data.articles[0]));
         })
         .catch(err => {
             console.log(err);
