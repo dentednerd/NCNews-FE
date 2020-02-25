@@ -27,7 +27,7 @@
     "babel-preset-react": "^6.11.1",
     "cors": "^2.8.4",
     "css-loader": "^0.27.3",
-    "eslint": "^3.17.1",
+    "eslint": "^4.18.2",
     "eslint-plugin-jsx": "0.0.2",
     "eslint-plugin-react": "^6.10.0",
     "gh-pages": "^1.0.0",
