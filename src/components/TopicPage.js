@@ -18,7 +18,8 @@ class TopicPage extends React.Component {
       <div className="columns">
         <div className="column is-three-quarters" id='TopicPage'>
           {this.props.articles.filter(article => {
-            return article.belongs_to === this.props.match.params.topic_id})          
+            return article.belongs_to === this.props.match.params.topic_id;
+          })       
           .map(article => <ArticleCard 
             title={article.title}
             author={article.created_by}
@@ -49,9 +50,10 @@ function MapStateToProps (state) {
   };
 }
 
-TopicPage.proptypes = {
-    fetchArticles:PropTypes.func.isRequired,
-    articles:PropTypes.array.isRequired
+TopicPage.propTypes = {
+  fetchArticles:PropTypes.func.isRequired,
+  articles:PropTypes.array.isRequired,
+  match: PropTypes.object.isRequired
 };
 
 export default connect(MapStateToProps, mapDispatchToProps) (TopicPage);

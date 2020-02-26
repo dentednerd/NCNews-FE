@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const ArticleCard = function (props) {
   return (
@@ -25,6 +25,8 @@ const ArticleCard = function (props) {
 
 ArticleCard.propTypes = {
   title: PropTypes.string.isRequired,
+  topic: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
   article_id: PropTypes.string.isRequired
 };
