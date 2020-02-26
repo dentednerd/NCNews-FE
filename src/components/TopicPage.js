@@ -7,7 +7,6 @@ import * as actions from '../actions/actions';
 
 // TODO: filter articles by topic
 
-
 class TopicPage extends React.Component {
   componentDidMount () {
     this.props.fetchArticles();

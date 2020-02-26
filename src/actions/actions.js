@@ -1,5 +1,5 @@
 import * as types from './types';
-import axios from  'axios';
+import axios from 'axios';
 import { ROOT } from '../../config';
 
 // fetchArticles
@@ -7,145 +7,145 @@ export function fetchArticles () {
   return function (dispatch) {
     dispatch(fetchArticlesRequest());
     axios.get(`${ROOT}/articles`)
-    .then(res => {
-      console.log('fetchArticles res data: ', res.data);
-      dispatch(fetchArticlesSuccess(res.data.articles));
-    })
-    .catch(err => {
-      console.log('fetchArticles error!', err);
-      dispatch(fetchArticlesError(err));
-    });
+      .then(res => {
+        console.log('fetchArticles res data: ', res.data);
+        dispatch(fetchArticlesSuccess(res.data.articles));
+      })
+      .catch(err => {
+        console.log('fetchArticles error!', err);
+        dispatch(fetchArticlesError(err));
+      });
   };
 }
 
 export function fetchArticlesRequest () {
-    return {
-        type: types.FETCH_ARTICLES_REQUESTS
-    };
+  return {
+    type: types.FETCH_ARTICLES_REQUESTS
+  };
 }
 
 export function fetchArticlesSuccess (articles) {
-    return {
-        type: types.FETCH_ARTICLES_SUCCESS,
-        payload: articles
-    };
+  return {
+    type: types.FETCH_ARTICLES_SUCCESS,
+    payload: articles
+  };
 }
 
 export function fetchArticlesError (error) {
-    return {
-        type: types.FETCH_ARTICLES_ERROR,
-        payload: error
-    };
+  return {
+    type: types.FETCH_ARTICLES_ERROR,
+    payload: error
+  };
 }
 
 // fetchArticlesByID
 export function fetchArticlesByID (id) {
-    return function (dispatch) {
-        dispatch(fetchArticlesByIDRequest(id));
-        axios.get(`${ROOT}/articles/${id}`)
-        .then(res => {
-            dispatch(fetchArticlesByIDSuccess(res.data.articles[0]));
-        })
-        .catch(err => {
-            console.log(err);
-            dispatch(fetchArticlesByIDError(err));
-        });
-    };
+  return function (dispatch) {
+    dispatch(fetchArticlesByIDRequest(id));
+    axios.get(`${ROOT}/articles/${id}`)
+      .then(res => {
+        dispatch(fetchArticlesByIDSuccess(res.data.articles[0]));
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(fetchArticlesByIDError(err));
+      });
+  };
 }
 
 export function fetchArticlesByIDRequest (id) {
-    return {
-        type: types.FETCH_ARTICLES_BY_ID_REQUESTS,
-        id: id
-    };
+  return {
+    type: types.FETCH_ARTICLES_BY_ID_REQUESTS,
+    id: id
+  };
 }
 
 export function fetchArticlesByIDSuccess (article) {
-    return {
-        type: types.FETCH_ARTICLES_BY_ID_SUCCESS,
-        payload: article
-    };
+  return {
+    type: types.FETCH_ARTICLES_BY_ID_SUCCESS,
+    payload: article
+  };
 }
 
 export function fetchArticlesByIDError (error) {
-    return {
-        type: types.FETCH_ARTICLES_BY_ID_ERROR,
-        payload: error
-    };
+  return {
+    type: types.FETCH_ARTICLES_BY_ID_ERROR,
+    payload: error
+  };
 }
 
 // fetchCommentsByArticleID
 export function fetchCommentsByArticleID (id) {
-    return function (dispatch) {
-        dispatch(fetchCommentsByArticleIDRequest(id));
-        axios.get(`${ROOT}/articles/${id}/comments`)
-        .then(res => {
-            dispatch(fetchCommentsByArticleIDSuccess(res.data.comments));
-        })
-        .catch(err => {
-            console.log(err);
-            dispatch(fetchCommentsByArticleIDError(err));
-        });
-    };
+  return function (dispatch) {
+    dispatch(fetchCommentsByArticleIDRequest(id));
+    axios.get(`${ROOT}/articles/${id}/comments`)
+      .then(res => {
+        dispatch(fetchCommentsByArticleIDSuccess(res.data.comments));
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(fetchCommentsByArticleIDError(err));
+      });
+  };
 }
 
 export function fetchCommentsByArticleIDRequest (id) {
-    return {
-        type: types.FETCH_COMMENTS_BY_ARTICLE_ID_REQUESTS,
-        id: id
-    };
+  return {
+    type: types.FETCH_COMMENTS_BY_ARTICLE_ID_REQUESTS,
+    id: id
+  };
 }
 
 export function fetchCommentsByArticleIDSuccess (comments) {
-    return {
-        type: types.FETCH_COMMENTS_BY_ARTICLE_ID_SUCCESS,
-        payload: comments 
-    };
+  return {
+    type: types.FETCH_COMMENTS_BY_ARTICLE_ID_SUCCESS,
+    payload: comments
+  };
 }
 
 export function fetchCommentsByArticleIDError (error) {
-    return {
-        type: types.FETCH_COMMENTS_BY_ARTICLE_ID_ERROR,
-        payload: error
-    };
+  return {
+    type: types.FETCH_COMMENTS_BY_ARTICLE_ID_ERROR,
+    payload: error
+  };
 }
 
 // addCommentsByArticleID
 export function addCommentsByArticleID (id, data) {
-    return function (dispatch) {
-        dispatch(addCommentsByArticleIDPost(id, data));
-        axios.post(`${ROOT}/articles/${id}/comments`, data)
-        .then(res => {
-            console.log('Article res: ', res);
-            dispatch(addCommentsByArticleIDSuccess(res.data.comments));
-        })
-        .catch(err => {
-            console.log(err);
-            dispatch(addCommentsByArticleIDError(err));
-        });
-    };
+  return function (dispatch) {
+    dispatch(addCommentsByArticleIDPost(id, data));
+    axios.post(`${ROOT}/articles/${id}/comments`, data)
+      .then(res => {
+        console.log('Article res: ', res);
+        dispatch(addCommentsByArticleIDSuccess(res.data.comments));
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(addCommentsByArticleIDError(err));
+      });
+  };
 }
 
 export function addCommentsByArticleIDPost (id, comment) {
-    return {
-        type: types.ADD_COMMENTS_BY_ARTICLE_ID_POST,
-        id: id,
-        comment: comment
-    };
+  return {
+    type: types.ADD_COMMENTS_BY_ARTICLE_ID_POST,
+    id: id,
+    comment: comment
+  };
 }
 
 export function addCommentsByArticleIDSuccess (comment) {
-    return {
-        type: types.ADD_COMMENTS_BY_ARTICLE_ID_SUCCESS,
-        payload: comment
-    };
+  return {
+    type: types.ADD_COMMENTS_BY_ARTICLE_ID_SUCCESS,
+    payload: comment
+  };
 }
 
 export function addCommentsByArticleIDError (error) {
-    return {
-        type: types.ADD_COMMENTS_BY_ARTICLE_ID_ERROR,
-        payload: error
-    };
+  return {
+    type: types.ADD_COMMENTS_BY_ARTICLE_ID_ERROR,
+    payload: error
+  };
 }
 
 // fetchTopics
@@ -184,8 +184,8 @@ export function fetchTopicsError (error) {
 
 // incrementArticleVotes
 export function articleVoteUp (id) {
-// add 1 to voteCount
-return function (dispatch) {
+  // add 1 to voteCount
+  return function (dispatch) {
     dispatch(articleVoteUpRequest());
     axios.put(`${ROOT}/articles/${id}?vote=up`)
       .then(res => {
@@ -219,8 +219,8 @@ export function articleVoteUpError (error) {
 
 // decrementVotes
 export function articleVoteDown (id) {
-// take 1 from voteCount
-return function (dispatch) {
+  // take 1 from voteCount
+  return function (dispatch) {
     dispatch(articleVoteDownRequest());
     axios.put(`${ROOT}/articles/${id}?vote=down`)
       .then(res => {

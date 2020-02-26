@@ -1,13 +1,9 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../actions/actions';
 
 class VoteButton extends React.Component {
-  // componentWillReceiveProps (nextProps) {
-  //   console.log('VoteButton has received props: ', this.props.votes);
-  //   console.log('VoteButton NEXT PROPS: ', nextProps.votes);
-  // }
   render () {
     return (
       <div className="vote">
