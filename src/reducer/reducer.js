@@ -26,7 +26,7 @@ function reducer (prevState = initialState, action) {
     return newState;
   }
 
-  if (action.type === types.FETCH_ARTICLES_ERRORS) {
+  if (action.type === types.FETCH_ARTICLES_ERROR) {
     const newState = Object.assign({}, prevState);
     newState.articles = [];
     newState.loading = false;
@@ -48,7 +48,7 @@ function reducer (prevState = initialState, action) {
     return newState;
   }
 
-  if (action.type === types.FETCH_ARTICLES_BY_ID_ERRORS) {
+  if (action.type === types.FETCH_ARTICLES_BY_ID_ERROR) {
     const newState = Object.assign({}, prevState);
     newState.articles = [];
     newState.selectedArticle = {};
@@ -71,11 +71,11 @@ function reducer (prevState = initialState, action) {
     return newState;
   }
 
-  if (action.type === types.FETCH_COMMENTS_BY_ARTICLE_ID_ERRORS) {
+  if (action.type === types.FETCH_COMMENTS_BY_ARTICLE_ID_ERROR) {
     const newState = Object.assign({}, prevState);
     newState.articles = [];
     newState.selectedArticle = {};
-    newState.selectedComments = {},
+    newState.selectedComments = {};
     newState.loading = false;
     newState.error = action.error;
     return newState;
@@ -95,11 +95,11 @@ function reducer (prevState = initialState, action) {
     return newState;
   }
 
-  if (action.type === types.ADD_COMMENTS_BY_ARTICLE_ID_ERRORS) {
+  if (action.type === types.ADD_COMMENTS_BY_ARTICLE_ID_ERROR) {
     const newState = Object.assign({}, prevState);
     newState.articles = [];
     newState.selectedArticle = {};
-    newState.selectedComments = {},
+    newState.selectedComments = {};
     newState.loading = false;
     newState.error = action.error;
     return newState;
@@ -145,7 +145,52 @@ function reducer (prevState = initialState, action) {
       return newState;
     }
 
+// fetchUser
+    if (action.type === types.FETCH_USER_REQUESTS) {
+      const newState = Object.assign({}, prevState);
+      newState.loading = true;
+      return newState;
+    }
+    
+    if (action.type === types.FETCH_USER_SUCCESS) {
+      const newState = Object.assign({}, prevState);
+      newState.user = action.payload;
+      newState.loading = false;
+      return newState;
+    }
+    
+    if (action.type === types.FETCH_USER_ERROR) {
+      const newState = Object.assign({}, prevState);
+      newState.user = {};
+      newState.loading = false;
+      newState.error = action.error;
+      return newState;
+    }
+
+// fetchAllUsers
+    if (action.type === types.FETCH_ALL_USERS_REQUESTS) {
+      const newState = Object.assign({}, prevState);
+      newState.loading = true;
+      return newState;
+    }
+    
+    if (action.type === types.FETCH_ALL_USERS_SUCCESS) {
+      const newState = Object.assign({}, prevState);
+      newState.allUsers = action.payload;
+      newState.loading = false;
+      return newState;
+    }
+    
+    if (action.type === types.FETCH_ALL_USERS_ERROR) {
+      const newState = Object.assign({}, prevState);
+      newState.allUsers = {};
+      newState.loading = false;
+      newState.error = action.error;
+      return newState;
+    }
+
   return prevState;
 }
+
 
 export default reducer;

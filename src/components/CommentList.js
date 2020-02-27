@@ -4,8 +4,7 @@ import Comment from './Comment';
 
 class CommentList extends React.Component {
   shouldComponentUpdate (nextProps) {
-    if (this.props !== nextProps) return true;
-    else return false;
+    return (this.props !== nextProps);
   }
 
   render () {
@@ -20,8 +19,7 @@ class CommentList extends React.Component {
 }
 
 CommentList.propTypes = {
-  selectedComments: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired
+  selectedComments: PropTypes.array.isRequired
 };
 
 export default CommentList;

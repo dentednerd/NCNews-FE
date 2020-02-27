@@ -6,15 +6,10 @@ import * as actions from '../actions/actions';
 class VoteButton extends React.Component {
   render () {
     return (
-      <div className="vote">
-        <span className="voteCount">
-            {this.props.votes}
-        <div className="voteButton">
-          {}
-          <button onClick={this.props.articleVoteUp.bind(this)}>+</button>
-          <button onClick={this.props.articleVoteDown.bind(this)}>-</button>
-        </div>   
-        </span>
+      <div>
+        {this.props.votes} votes
+        <button onClick={this.props.articleVoteUp.bind(this)}>+</button>
+        <button onClick={this.props.articleVoteDown.bind(this)}>-</button>
       </div>
     );
   }

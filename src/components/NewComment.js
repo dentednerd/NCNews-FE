@@ -8,30 +8,22 @@ class NewComment extends React.Component {
     super(props);
     this.state = {
       comment: {
-      value: '',
-      touched: false
+        value: '',
+        touched: false
       }
     };
-  this.handleChange = this.handleChange.bind(this);
-  this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   render () {
     return (
-      <div className="newComment">
-        <h3>Leave your comment:</h3>
-        <form onSubmit={this.handleSubmit}>
-
-          <div className="field comment">
-            <div className="control">
-              <input id="comment-input" className="input" type="text" placeholder="Comment" onChange={this.handleChange.bind(null, 'comment')} />
-            </div>
-          </div>
-
-          <button className="submitButton" type="submit">
+      <form onSubmit={this.handleSubmit}>
+        <input id="comment-input" className="input" type="text" placeholder="Leave your comment" onChange={this.handleChange.bind(null, 'comment')} />
+        <button type="submit">
           Submit
-          </button>
-        </form>
-      </div>
+        </button>
+      </form>
     );
   }
   

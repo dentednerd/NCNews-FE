@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import createBrowserHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 
 import App from './components/App';
-import ArticleList from './components/ArticleList';
-import ArticlePage from './components/ArticlePage';
-import TopicPage from './components/TopicPage';
+import Home from './components/pages/Home';
+import ArticlePage from './components/pages/ArticlePage';
+import TopicPage from './components/pages/TopicPage';
 import reducer from './reducer/reducer';
 
 const store = createStore(reducer, applyMiddleware(thunk));
@@ -20,9 +20,9 @@ ReactDOM.render(
     <Router history={history}>
       <App>
         <Switch>
-          <Route exact path='/' component={ArticleList} />
+          <Route exact path='/' component={Home} />
           <Route path='/articles/:article_id' component={ArticlePage} />
-          <Route path='/topics/:topic_id/articles' component={TopicPage} />
+          <Route path='/topics/:topic_id' component={TopicPage} />
         </Switch>
       </App>
     </Router>

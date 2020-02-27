@@ -1,18 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Navbar from './organisms/Navbar';
+import Profile from './organisms/Profile';
 
-import Navbar from './Navbar';
+const Main = styled('main')`
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  grid-template-areas: "main main main sidebar";
+`;
 
-class App extends React.Component {
-  render () {
-    return (
-      <div>
-        <Navbar />
-        {this.props.children}
-      </div>
-    );
-  }
-}
+const GridChildren = styled('section')`
+  grid-area: main;
+`;
+
+const GridProfile = styled('section')`
+  grid-column-start: 4;
+  grid-column-end: 5;
+  justify-self: start;
+`;
+
+const App = ({ children }) => (
+  <div>
+    <Navbar />
+    <Main>
+      <GridChildren>
+        {children}
+      </GridChildren>
+      <GridProfile>
+        <Profile />
+      </GridProfile>
+    </Main>
+  </div>
+);
 
 App.propTypes = {
   children: PropTypes.object.isRequired

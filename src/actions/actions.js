@@ -1,6 +1,6 @@
 import * as types from './types';
 import axios from 'axios';
-import { ROOT } from '../../config';
+import { ROOT } from '../config';
 
 // fetchArticles
 export function fetchArticles () {
@@ -8,7 +8,6 @@ export function fetchArticles () {
     dispatch(fetchArticlesRequest());
     axios.get(`${ROOT}/articles`)
       .then(res => {
-        console.log('fetchArticles res data: ', res.data);
         dispatch(fetchArticlesSuccess(res.data.articles));
       })
       .catch(err => {
@@ -248,6 +247,76 @@ export function articleVoteDownSuccess () {
 export function articleVoteDownError (error) {
   return {
     type: types.ARTICLE_VOTE_DOWN_ERROR,
+    payload: error
+  };
+}
+
+// fetchUser
+export function fetchUser (username) {
+  return function (dispatch) {
+    dispatch(fetchUserRequest());
+    axios.get(`${ROOT}/users/${username}`)
+      .then(res => {
+        dispatch(fetchUserSuccess(res.data));
+      })
+      .catch(err => {
+        console.log('fetchUser error!', err);
+        dispatch(fetchUserError(err));
+      });
+  };
+}
+
+export function fetchUserRequest () {
+  return {
+    type: types.FETCH_USER_REQUESTS
+  };
+}
+
+export function fetchUserSuccess (user) {
+  return {
+    type: types.FETCH_USER_SUCCESS,
+    payload: user
+  };
+}
+
+export function fetchUserError (error) {
+  return {
+    type: types.FETCH_USER_ERROR,
+    payload: error
+  };
+}
+
+// fetchAllUsers
+export function fetchAllUsers () {
+  return function (dispatch) {
+    dispatch(fetchAllUsersRequest());
+    axios.get(`${ROOT}/users`)
+      .then(res => {
+        dispatch(fetchAllUsersSuccess(res.data));
+      })
+      .catch(err => {
+        console.log('fetchAllUsers error!', err);
+        dispatch(fetchAllUsersError(err));
+      });
+  };
+}
+
+export function fetchAllUsersRequest () {
+  return {
+    type: types.FETCH_ALL_USERS_REQUESTS
+  };
+}
+
+export function fetchAllUsersSuccess (users) {
+  return {
+    type: types.FETCH_ALL_USERS_SUCCESS,
+    payload: users
+  };
+}
+
+export function fetchAllUsersError (error) {
+  return {
+    type: types.FETCH_ALL_USERS_ERROR,
     payload: error
   };
 }
