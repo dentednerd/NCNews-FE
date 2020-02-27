@@ -56,7 +56,7 @@ const UserList = styled.ul`
   }
 `;
 
-class Profile extends React.Component {
+class Sidebar extends React.Component {
   componentDidMount() {
     this.props.fetchAllUsers();
   }
@@ -79,19 +79,10 @@ class Profile extends React.Component {
           <p>Welcome, Awesome Northcoder! It's {dayjs().format('MMMM DD, YYYY')}.</p>
         </StyledSection>
         <StyledSection>
-          <form>
-            <div className="search">
-              <div className="control">
-                <input id="search" className="input" type="text" placeholder="Search" />
-              </div>
-            </div>
-          </form>
-        </StyledSection>
-        <StyledSection>
           <UserList>
             <h3>Current Users</h3>
             {this.props.users && this.props.users.map(user => (
-              <li>
+              <li key={user.name}>
                 <img src={user.avatar_url} alt={user.name} />
                 <p>{user.name}</p>
               </li>
@@ -118,4 +109,4 @@ function MapStateToProps (state) {
   };
 }
 
-export default connect(MapStateToProps, mapDispatchToProps) (Profile);
+export default connect(MapStateToProps, mapDispatchToProps) (Sidebar);

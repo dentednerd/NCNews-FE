@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Navbar from './organisms/Navbar';
-import Profile from './organisms/Profile';
+import Sidebar from './organisms/Sidebar';
 
 const Main = styled('main')`
   width: 100%;
@@ -32,7 +32,7 @@ const App = ({ children }) => (
         {children}
       </GridChildren>
       <GridProfile>
-        <Profile />
+        <Sidebar />
       </GridProfile>
     </Main>
   </div>
