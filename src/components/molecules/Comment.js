@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-import * as actions from '../actions/actions';
+import * as actions from '../../actions/actions';
 
 const StyledComment = styled.section`
   margin-bottom: 1rem;
@@ -49,17 +49,16 @@ const CommentBody = styled.p`
 
 class Comment extends React.Component {
   componentDidMount() {
-    this.props.fetchAllUsers();
+    this.props.fetchUser(this.props.comment.created_by);
   }
 
   render () {
     const time = dayjs(this.props.comment.created_at).format('HH:mm, DD MMMM YYYY');
-    const thisUser = this.props.users.filter(user => user.username === this.props.comment.created_by)[0]
     return (
       <StyledComment>
         <Commenter>
-          <Avatar src={thisUser.avatar_url} alt={thisUser.name} />
-          <p><strong>{thisUser.name} says:</strong></p>
+          <Avatar src={this.props.user.avatar_url} alt={this.props.user.name} />
+          <p><strong>{this.props.user.name} says:</strong></p>
         </Commenter>
         <CommentBody>{this.props.comment.body}</CommentBody>
         <p>{time}</p>
@@ -70,22 +69,22 @@ class Comment extends React.Component {
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchAllUsers: () => {
-      dispatch(actions.fetchAllUsers());
+    fetchUser: (username) => {
+      dispatch(actions.fetchUser(username));
     },
   };
 }
 
 function MapStateToProps (state) {
   return {
-    users: state.allUsers,
+    user: state.user,
     loading: state.loading
   };
 }
 
 Comment.propTypes = {
   comment: PropTypes.object.isRequired,
-  users: PropTypes.array
+  user: PropTypes.object
 };
 
 export default connect(MapStateToProps, mapDispatchToProps) (Comment);

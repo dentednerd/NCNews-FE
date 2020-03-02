@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Comment from './Comment';
+import Comment from '../molecules/Comment';
 
 class CommentList extends React.Component {
   shouldComponentUpdate (nextProps) {
@@ -8,13 +8,10 @@ class CommentList extends React.Component {
   }
 
   render () {
-    return (
-      <div>
-        {this.props.selectedComments.map((comment) => {
-          return <Comment key={comment._id} comment={comment} />;
-        })}
-      </div>
-    );
+    if (!this.props.selectedComments.length) return null;
+    return this.props.selectedComments.map((comment) => {
+      return <Comment key={comment._id} comment={comment} />;
+    });
   }
 }
 

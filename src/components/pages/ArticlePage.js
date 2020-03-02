@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import ArticleText from '../atoms/ArticleText';
-import CommentList from '../CommentList';
-import VoteAndComment from '../organisms/VoteAndComment';
-import Byline from '../molecules/Byline';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/actions';
-import '../../style.css';
+import ArticleText from '../atoms/ArticleText';
+import CommentList from '../organisms/CommentList';
+import VoteAndComment from '../organisms/VoteAndComment';
+import Byline from '../molecules/Byline';
 
 const Article = styled.article`
   background-color: #fff;

@@ -57,6 +57,31 @@ function reducer (prevState = initialState, action) {
     return newState;
   }
 
+    // fetchArticlesByUser
+    if (action.type === types.FETCH_ARTICLES_BY_USER_REQUESTS) {
+      const newState = Object.assign({}, prevState);
+      newState.articles = [];
+      newState.selectedArticle = {};
+      newState.loading = true;
+      return newState;
+    }
+  
+    if (action.type === types.FETCH_ARTICLES_BY_USER_SUCCESS) {
+      const newState = Object.assign({}, prevState);
+      newState.articles = action.payload;
+      newState.loading = false;
+      return newState;
+    }
+  
+    if (action.type === types.FETCH_ARTICLES_BY_USER_ERROR) {
+      const newState = Object.assign({}, prevState);
+      newState.articles = [];
+      newState.selectedArticle = {};
+      newState.loading = false;
+      newState.error = action.error;
+      return newState;
+    }
+
   // fetchCommentsByArticleID
   if (action.type === types.FETCH_COMMENTS_BY_ARTICLE_ID_REQUESTS) {
     const newState = Object.assign({}, prevState);
@@ -80,6 +105,30 @@ function reducer (prevState = initialState, action) {
     newState.error = action.error;
     return newState;
   }
+
+    // fetchCommentsByUser
+    if (action.type === types.FETCH_COMMENTS_BY_USER_REQUESTS) {
+      const newState = Object.assign({}, prevState);
+      newState.loading = true;
+      return newState;
+    }
+  
+    if (action.type === types.FETCH_COMMENTS_BY_USER_SUCCESS) {
+      const newState = Object.assign({}, prevState);
+      newState.selectedComments = action.payload;
+      newState.loading = false;
+      return newState;
+    }
+  
+    if (action.type === types.FETCH_COMMENTS_BY_USER_ERROR) {
+      const newState = Object.assign({}, prevState);
+      newState.articles = [];
+      newState.selectedArticle = {};
+      newState.selectedComments = {};
+      newState.loading = false;
+      newState.error = action.error;
+      return newState;
+    }
 
 // addCommentsByArticleID
   if (action.type === types.ADD_COMMENTS_BY_ARTICLE_ID_POST) {

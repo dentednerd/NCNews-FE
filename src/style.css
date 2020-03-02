@@ -7,161 +7,21 @@ html, body {
 }
 
 a {
-    color: #222;
+  color: #222;
+  text-decoration: none;
 }
 
-.title {
-  font-family: 'Zilla Slab', serif;
+h2 {
+  font-family: "Zilla Slab", serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
 }
 
-.subtitle {
-  font-family: 'Open Sans', sans-serif;
-}
-
-.columns {
-  padding: 0 20px;
-}
-
-/* ArticleList */
-
-.profile {
-  padding:20px;
-  margin: 10px;
-  font-size:12px;
-} 
-
-/* ArticleCard  */
-
-h2, h3 {
-  font-family: 'Zilla Slab', serif;
-}
-
-#ArticleList .title:not(:last-child), #TopicPage .title:not(:last-child) {
-    margin-bottom:0;
-}
-
-.topic {
-  text-transform:capitalize;
-}
-
-.media-left, .vote {
-  background-color:#2C3551;
-  width:10%;
-  padding:10px;
-  font-size:3vw;
-  font-weight:bold;
-  color:#fff;
-  text-align:center;
-  display: flex;
-  flex-flow:row nowrap;
-  justify-content:space-around;
-  align-items:center;
-}
-
-.media-left:after {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
-}
-
-/* Profile */
-
-.profileWrap {
-  display:flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items:center;
-  margin-bottom:20px;
-}
-
-.avatar {
-  width: 20%;
-  margin-right:10px;
-}
-
-.profileName {
-  display:flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.profileName .title {
-  font-size: 2vw;
-}
-
-/* ArticlePage  */
-
-.articlePage {
-  font-size: 20px;
-}
-
-.articleTitle {
-  margin-bottom:20px;
-}
-
-.voteAndComment {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: stretch;
-  align-items: stretch;
-}
-
-.vote {
-  margin-right: 10px;
-  min-height: 100%;
-  /* display:table-cell; */
-  
-}
-
-.voteCount {
-  margin: 0 auto;
-  height:100%;
-  padding-bottom: 5px;
-}
-
-.voteButton {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items:center;
-}
-
-.voteButton button, .submitButton {
-  background-color:#2C3551;
-  margin: 5px;
-  padding: 5px;
-  border:none;
-  font-size: 24px;
-  font-weight:bold;
-  color: #fff;
-} 
-
-.voteButton button:hover, .submitButton:hover {
-  background-color:#77f;
-}
-
-.newComment {
-  width:39%;
-  display:flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.newComment form {
-  margin:0;
-  padding:0;
-}
-
-.commentBody{
-  font-size:14px;
-}
-
-.commentInfo {
-  font-size: 12px;
-  line-height:12px;
-  margin:0;
-  padding:0;
-  color:#888;
+h3 {
+  color: #354262;
+  font-family: "Zilla Slab", serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
 }

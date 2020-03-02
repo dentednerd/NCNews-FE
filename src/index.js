@@ -10,6 +10,7 @@ import App from './components/App';
 import Home from './components/pages/Home';
 import ArticlePage from './components/pages/ArticlePage';
 import TopicPage from './components/pages/TopicPage';
+import UserPage from './components/pages/UserPage';
 import reducer from './reducer/reducer';
 
 const store = createStore(reducer, applyMiddleware(thunk));
@@ -23,6 +24,7 @@ ReactDOM.render(
           <Route exact path='/' component={Home} />
           <Route path='/articles/:article_id' component={ArticlePage} />
           <Route path='/topics/:topic_id' component={TopicPage} />
+          <Route path='/users/:user_id' component={UserPage} />
         </Switch>
       </App>
     </Router>

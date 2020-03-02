@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/actions';
 
 const StyledByline = styled.div`
-  margin-bottom: 1rem;
   display: flex;
   align-items: center;
 `;

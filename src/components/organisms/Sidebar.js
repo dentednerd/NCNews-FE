@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
@@ -82,10 +83,12 @@ class Sidebar extends React.Component {
           <UserList>
             <h3>Current Users</h3>
             {this.props.users && this.props.users.map(user => (
-              <li key={user.name}>
-                <img src={user.avatar_url} alt={user.name} />
-                <p>{user.name}</p>
-              </li>
+              <Link to={`/users/${user.username}`} key={user.name}>
+                <li>
+                  <img src={user.avatar_url} alt={user.name} />
+                  <p>{user.name}</p>
+                </li>
+              </Link>
             ))}
           </UserList>
         </StyledSection>
@@ -98,7 +101,7 @@ function mapDispatchToProps (dispatch) {
   return {
     fetchAllUsers: () => {
       dispatch(actions.fetchAllUsers());
-    },
+    }
   };
 }
 

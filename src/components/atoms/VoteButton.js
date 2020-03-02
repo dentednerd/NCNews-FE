@@ -1,16 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as actions from '../actions/actions';
+import * as actions from '../../actions/actions';
+import styled from 'styled-components';
+
+const Votes = styled.section`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 1rem;
+`;
+
+const Button = styled.button`
+  height: 1.5rem;
+  width: 1.5rem;
+  display: flex;
+  justify-content: center;
+  border: none;
+  border-radius: 0.25rem;
+  align-items: center;
+  background-color: #354262;
+  color: #fff;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+`;
 
 class VoteButton extends React.Component {
   render () {
     return (
-      <div>
+      <Votes>
         {this.props.votes} votes
-        <button onClick={this.props.articleVoteUp.bind(this)}>+</button>
-        <button onClick={this.props.articleVoteDown.bind(this)}>-</button>
-      </div>
+        <Button onClick={this.props.articleVoteUp.bind(this)}>+</Button>
+        <Button onClick={this.props.articleVoteDown.bind(this)}>-</Button>
+      </Votes>
     );
   }
 }

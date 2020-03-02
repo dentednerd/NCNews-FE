@@ -73,6 +73,80 @@ export function fetchArticlesByIDError (error) {
   };
 }
 
+// fetchArticlesByUser
+export function fetchArticlesByUser (username) {
+  return function (dispatch) {
+    dispatch(fetchArticlesByUserRequest(username));
+    axios.get(`${ROOT}/users/${username}/articles`)
+      .then(res => {
+        console.log('fetchArticlesByUser res data', res.data.articles);
+        dispatch(fetchArticlesByUserSuccess(res.data.articles));
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(fetchArticlesByUserError(err));
+      });
+  };
+}
+
+export function fetchArticlesByUserRequest (id) {
+  return {
+    type: types.FETCH_ARTICLES_BY_USER_REQUESTS,
+    id: id
+  };
+}
+
+export function fetchArticlesByUserSuccess (articles) {
+  console.log('success! articles:', articles);
+  return {
+    type: types.FETCH_ARTICLES_BY_USER_SUCCESS,
+    payload: articles
+  };
+}
+
+export function fetchArticlesByUserError (error) {
+  return {
+    type: types.FETCH_ARTICLES_BY_USER_ERROR,
+    payload: error
+  };
+}
+
+// fetchCommentsByUser
+export function fetchCommentsByUser (username) {
+  return function (dispatch) {
+    dispatch(fetchCommentsByUserRequest(username));
+    axios.get(`${ROOT}/users/${username}/comments`)
+      .then(res => {
+        dispatch(fetchCommentsByUserSuccess(res.data.comments));
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(fetchCommentsByUserError(err));
+      });
+  };
+}
+
+export function fetchCommentsByUserRequest (id) {
+  return {
+    type: types.FETCH_COMMENTS_BY_USER_REQUESTS,
+    id: id
+  };
+}
+
+export function fetchCommentsByUserSuccess (comments) {
+  return {
+    type: types.FETCH_COMMENTS_BY_USER_SUCCESS,
+    payload: comments
+  };
+}
+
+export function fetchCommentsByUserError (error) {
+  return {
+    type: types.FETCH_COMMENTS_BY_USER_ERROR,
+    payload: error
+  };
+}
+
 // fetchCommentsByArticleID
 export function fetchCommentsByArticleID (id) {
   return function (dispatch) {

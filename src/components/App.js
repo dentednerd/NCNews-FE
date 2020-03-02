@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Navbar from './organisms/Navbar';
 import Sidebar from './organisms/Sidebar';
+import '../style.css';
 
 const Main = styled('main')`
   width: 100%;
