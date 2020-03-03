@@ -32,14 +32,18 @@ const ProfileName = styled.div`
   align-items: flex-start;
 `;
 
-const Profile = ({ user }) => (
-  <StyledSection>
-    <img src={user.avatar_url} alt={user.name} />
-    <ProfileName>
-      <h2>{user.name}</h2>
-      <p>{user.username}</p>
-    </ProfileName>
-  </StyledSection>
-);
+const Profile = ({ user }) => {
+  if (!user) return null;
+  
+  return (
+    <StyledSection>
+      <img src={user.avatar_url} alt={user.name} />
+      <ProfileName>
+        <h2>{user.name}</h2>
+        <p>{user.username}</p>
+      </ProfileName>
+    </StyledSection>
+  );
+}
 
 export default Profile;

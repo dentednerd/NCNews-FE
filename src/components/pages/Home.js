@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ArticleCard from '../molecules/ArticleCard';
 import MostRecent from '../organisms/MostRecent';
+import MostPopular from '../organisms/MostPopular';
 import * as actions from '../../actions/actions';
 
 class Home extends React.Component {
@@ -15,16 +15,9 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <MostRecent articles={this.props.articles} />
-        {this.props.articles.map(article => (
-          <ArticleCard
-            title={article.title}
-            author={article.created_by}
-            votes={article.votes} 
-            key={article.title}
-            topic={article.belongs_to} 
-            article_id={article._id}
-          />
-        ))}
+        <MostPopular articles={this.props.articles} topic="coding" />
+        <MostPopular articles={this.props.articles} topic="cooking" />
+        <MostPopular articles={this.props.articles} topic="football" />
       </React.Fragment>
     )
   }

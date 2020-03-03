@@ -4,22 +4,33 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/actions';
 import Profile from '../organisms/Profile';
 import CommentList from '../organisms/CommentList';
-import ArticleCard from '../molecules/ArticleCard';
+import MostPopular from '../organisms/MostPopular';
+import WhiteTitle from '../atoms/WhiteTitle';
 
 class UserPage extends React.Component {
   componentDidMount () {
-    this.props.fetchUser(this.props.match.params.user_id);
+    this.props.fetchAllUsers();
     this.props.fetchArticlesByUser(this.props.match.params.user_id);
     this.props.fetchCommentsByUser(this.props.match.params.user_id);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.user_id !== this.props.match.params.user_id) {
+      this.props.fetchArticlesByUser(this.props.match.params.user_id);
+      this.props.fetchCommentsByUser(this.props.match.params.user_id);
+    }
+  }
+
   render () {
+    if (!this.props.users.length || !this.props.articles.length || !this.props.selectedComments.length) return null;
+    const thisUser = this.props.users.filter(user => user.username === this.props.match.params.user_id)[0];
     return (
       <div>
-        <Profile user={this.props.user} />
-        <h2>Articles</h2>
-        {this.props.articles.map(article => <ArticleCard topic={article.belongs_to} title={article.title} author={this.props.user.name} article_id={article._id} />)}
-        <h2>Comments</h2>
+        <Profile user={thisUser} />
+        <MostPopular articles={this.props.articles} topic="coding" />
+        <MostPopular articles={this.props.articles} topic="cooking" />
+        <MostPopular articles={this.props.articles} topic="football" />
+        <WhiteTitle>comments</WhiteTitle>
         <CommentList selectedComments={this.props.selectedComments} />
       </div>
     );
@@ -28,8 +39,8 @@ class UserPage extends React.Component {
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchUser: (id) => {
-      dispatch(actions.fetchUser(id));
+    fetchAllUsers: () => {
+      dispatch(actions.fetchAllUsers());
     },
     fetchArticlesByUser: (id) => {
       dispatch(actions.fetchArticlesByUser(id));
@@ -42,23 +53,23 @@ function mapDispatchToProps (dispatch) {
 
 function MapStateToProps (state) {
   return {
-    user: state.user,
+    users: state.allUsers,
     articles: state.articles,
     selectedComments: state.selectedComments
   };
 }
 
 UserPage.defaultProps = {
-  user: {},
+  users: [],
   articles: [],
   selectedComments: []
 }
 
 UserPage.propTypes = {
-    user: PropTypes.object,
+    users: PropTypes.array,
     articles: PropTypes.array,
     selectedComments: PropTypes.array,
-    fetchUser: PropTypes.func.isRequired,
+    fetchAllUsers: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired
 };
 

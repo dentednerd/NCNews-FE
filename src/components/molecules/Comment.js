@@ -1,9 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-import * as actions from '../../actions/actions';
+import Byline from '../molecules/Byline';
 
 const StyledComment = styled.section`
   margin-bottom: 1rem;
@@ -14,72 +14,31 @@ const StyledComment = styled.section`
   padding: 1rem;
   overflow: hidden;
   word-wrap: break-word;
-
-  h3 {
-    margin: 0;
-  }
+  width: calc(50% - 3rem);
 
   p {
     margin: 0 0 1rem 0;
   }
-`;
 
-const Commenter = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
-
-  p {
-    font-size: 1.5rem;
-    font-family: "Zilla Slab", serif;
+  a {
+    color: #a0c9d7;
+    border-bottom: dotted 1px #a0c9d7;
   }
-`;
-
-const Avatar = styled.img`
-  width: 2rem;
-  height: 2rem;
-  border-radius: 1rem;
-  margin-right: 1rem;
 `;
 
 const CommentBody = styled.p`
   margin-bottom: 1rem;
 `;
 
-class Comment extends React.Component {
-  componentDidMount() {
-    this.props.fetchUser(this.props.comment.created_by);
-  }
-
-  render () {
-    const time = dayjs(this.props.comment.created_at).format('HH:mm, DD MMMM YYYY');
-    return (
-      <StyledComment>
-        <Commenter>
-          <Avatar src={this.props.user.avatar_url} alt={this.props.user.name} />
-          <p><strong>{this.props.user.name} says:</strong></p>
-        </Commenter>
-        <CommentBody>{this.props.comment.body}</CommentBody>
-        <p>{time}</p>
-      </StyledComment>
-    );
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    fetchUser: (username) => {
-      dispatch(actions.fetchUser(username));
-    },
-  };
-}
-
-function MapStateToProps (state) {
-  return {
-    user: state.user,
-    loading: state.loading
-  };
+const Comment = (props)  => {
+  const time = dayjs(props.comment.created_at).format('HH:mm, DD MMMM YYYY');
+  return (
+    <StyledComment>
+      <p><Link to={`/articles/${props.comment.belongs_to}`}>&raquo; view article</Link></p>
+      <CommentBody>{props.comment.body}</CommentBody>
+      <Byline username={props.comment.created_by} time={time} />
+    </StyledComment>
+  );
 }
 
 Comment.propTypes = {
@@ -87,4 +46,4 @@ Comment.propTypes = {
   user: PropTypes.object
 };
 
-export default connect(MapStateToProps, mapDispatchToProps) (Comment);
+export default Comment;

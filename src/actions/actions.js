@@ -11,7 +11,6 @@ export function fetchArticles () {
         dispatch(fetchArticlesSuccess(res.data.articles));
       })
       .catch(err => {
-        console.log('fetchArticles error!', err);
         dispatch(fetchArticlesError(err));
       });
   };
@@ -46,7 +45,6 @@ export function fetchArticlesByID (id) {
         dispatch(fetchArticlesByIDSuccess(res.data.articles[0]));
       })
       .catch(err => {
-        console.log(err);
         dispatch(fetchArticlesByIDError(err));
       });
   };
@@ -79,11 +77,9 @@ export function fetchArticlesByUser (username) {
     dispatch(fetchArticlesByUserRequest(username));
     axios.get(`${ROOT}/users/${username}/articles`)
       .then(res => {
-        console.log('fetchArticlesByUser res data', res.data.articles);
         dispatch(fetchArticlesByUserSuccess(res.data.articles));
       })
       .catch(err => {
-        console.log(err);
         dispatch(fetchArticlesByUserError(err));
       });
   };
@@ -97,7 +93,6 @@ export function fetchArticlesByUserRequest (id) {
 }
 
 export function fetchArticlesByUserSuccess (articles) {
-  console.log('success! articles:', articles);
   return {
     type: types.FETCH_ARTICLES_BY_USER_SUCCESS,
     payload: articles
@@ -120,7 +115,6 @@ export function fetchCommentsByUser (username) {
         dispatch(fetchCommentsByUserSuccess(res.data.comments));
       })
       .catch(err => {
-        console.log(err);
         dispatch(fetchCommentsByUserError(err));
       });
   };
@@ -156,7 +150,6 @@ export function fetchCommentsByArticleID (id) {
         dispatch(fetchCommentsByArticleIDSuccess(res.data.comments));
       })
       .catch(err => {
-        console.log(err);
         dispatch(fetchCommentsByArticleIDError(err));
       });
   };
@@ -189,11 +182,9 @@ export function addCommentsByArticleID (id, data) {
     dispatch(addCommentsByArticleIDPost(id, data));
     axios.post(`${ROOT}/articles/${id}/comments`, data)
       .then(res => {
-        console.log('Article res: ', res);
         dispatch(addCommentsByArticleIDSuccess(res.data.comments));
       })
       .catch(err => {
-        console.log(err);
         dispatch(addCommentsByArticleIDError(err));
       });
   };
@@ -334,7 +325,6 @@ export function fetchUser (username) {
         dispatch(fetchUserSuccess(res.data));
       })
       .catch(err => {
-        console.log('fetchUser error!', err);
         dispatch(fetchUserError(err));
       });
   };
@@ -369,7 +359,6 @@ export function fetchAllUsers () {
         dispatch(fetchAllUsersSuccess(res.data));
       })
       .catch(err => {
-        console.log('fetchAllUsers error!', err);
         dispatch(fetchAllUsersError(err));
       });
   };

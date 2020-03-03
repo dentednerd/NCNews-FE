@@ -1,68 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/actions';
 
 const StyledByline = styled.div`
   display: flex;
   align-items: center;
+  padding: 0.5rem 0;
+  color: #ccc;
+
+  a {
+    color: #a0c9d7;
+  }
 `;
 
 const Avatar = styled.img`
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 1rem;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
 `;
 
 class Byline extends React.Component {
-  componentDidMount () {
-    this.props.fetchUser(this.props.authorUsername);
-  }
-
-  shouldComponentUpdate() {
-    if (!this.props.author) return true;
-    return this.props.author.length > 0;
-  }
-  componentDidUpdate () {
-    this.props.fetchUser(this.props.authorUsername);
-  }
-
   render () {
-    if (!this.props.author) return null;
+    if (!this.props.users || !this.props.username) return null;
+    const thisUser = this.props.users.filter(user => user.username === this.props.username)[0];
     return (
     <StyledByline>
-      <Avatar src={this.props.author.avatar_url} alt={this.props.author.name} />
-      <a href={`/users/${this.props.author.username}`}>{this.props.author.name}</a>
+      <Avatar src={thisUser.avatar_url} alt={thisUser.name} />
+      <Link to={`/users/${thisUser.username}`}>{thisUser.name}</Link>
+      &nbsp;
+      {this.props.topic && <Link to={`/topics/${this.props.topic}`}>in {this.props.topic}</Link>}
+      {this.props.time && `at ${this.props.time}`}
     </StyledByline>
     );
   }
 }
 
-function mapDispatchToProps (dispatch) {
-  return {
-    fetchUser: (authorUsername) => {
-      dispatch(actions.fetchUser(authorUsername));
-    },
-  };
-}
-
 function MapStateToProps (state) {
   return {
-    author: state.user,
+    users: state.allUsers,
     loading: state.loading
   };
 }
 Byline.defaultProps = {
-  authorUsername: ""
+  username: ""
 }
 
 Byline.propTypes = {
-  author: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  users: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   authorUsername: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
-  fetchUser: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
-export default connect(MapStateToProps, mapDispatchToProps) (Byline);
+export default connect(MapStateToProps) (Byline);

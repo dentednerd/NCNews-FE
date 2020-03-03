@@ -1,14 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-// import Byline from '../molecules/Byline';
+import Byline from '../molecules/Byline';
 
 const MostRecentContainer = styled.section`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  width: calc(100% - 2rem);
+  width: 100%;
   margin-bottom: 1rem;
+
+  img.header {
+    margin: -2rem 0 1rem -2rem;
+    width: calc(100% + 4rem);
+    object-fit: cover;
+    height: 15rem;
+  }
 `;
 
 const Card = styled.article`
@@ -17,51 +25,53 @@ const Card = styled.article`
   border-radius: 1rem;
   background-color: #fff;
   box-shadow: 0.25rem 0.25rem 0.25rem #ddd;
-  position: relative;
+  overflow: hidden;
+  transition: all 0.25s;
+
+  &:hover {
+    box-shadow: 0.1rem 0.1rem 0.1rem #ccc;
+    transition: all 0.25s;
+  }
 
   p {
     margin: 0;
   }
-
-  section {
-    position: absolute;
-    top: -0.75rem;
-    right: -0.5rem;
-    background-color: #354262;
-    color: #fff;
-    padding: 0.25rem;
-    border-radius: 0.25rem;
-  }
 `;
+
+const images = {
+  football: "https://ugc.futurelearn.com/uploads/images/90/2d/902d0c48-095e-4919-81aa-4b8f4d3f198c.jpg",
+  cooking: "https://www.yesmagazine.org/wp-content/uploads/imports/36a0edc6dcbf4466ae71d0548f94ff43.jpg",
+  coding: "https://miro.medium.com/max/3200/0*QUqE4WGF8_cC9bIl.jpg"
+}
 
 const MostRecentCard = ({ article }) => (
   <Card>
-    <section>{article.belongs_to}</section>
-    <h2>{article.title}</h2>
-    {/* <Byline authorUsername={article.created_by} /> */}
-    <p>{article.created_by}</p>
+    <section></section>
+    <img className="header" src={images[article.belongs_to]} alt={article.title} />
+    <Link to={`/articles/${article._id}`}><h2>{article.title}</h2></Link>
+    <Byline username={article.created_by} topic={article.belongs_to} />
   </Card>
-)
+);
 
 const MostRecent = ({ articles }) => (
   <MostRecentContainer>
-    {articles.filter(article => article.belongs_to === "football")
+    {articles.sort((a, b) => a._id - b._id).filter(article => article.belongs_to === "football")
       .map((article, index) => {
         if (index > 0) return null;
-        return <MostRecentCard article={article} />
+        return <MostRecentCard article={article} key={article._id} />
       })
     }
     {articles.filter(article => article.belongs_to === "cooking")
       .map((article, index) => {
         if (index > 0) return null;
-        return <MostRecentCard article={article} />
+        return <MostRecentCard article={article} key={article._id} />
       })
     }
 
     {articles.filter(article => article.belongs_to === "coding")
       .map((article, index) => {
         if (index > 0) return null;
-        return <MostRecentCard article={article} />
+        return <MostRecentCard article={article} key={article._id} />
       })
     }
   </MostRecentContainer>

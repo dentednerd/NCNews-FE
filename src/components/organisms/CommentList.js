@@ -1,17 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Comment from '../molecules/Comment';
 
 class CommentList extends React.Component {
-  shouldComponentUpdate (nextProps) {
-    return (this.props !== nextProps);
-  }
-
   render () {
     if (!this.props.selectedComments.length) return null;
-    return this.props.selectedComments.map((comment) => {
-      return <Comment key={comment._id} comment={comment} />;
-    });
+
+    const StyledCommentList = styled.section`
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    `;
+
+    return (
+      <StyledCommentList>
+        {this.props.selectedComments.sort((a, b) => b.created_at - a.created_at).map((comment) => (
+          <Comment key={comment._id} comment={comment} />
+        ))}
+      </StyledCommentList>
+    );
   }
 }
 

@@ -23,14 +23,6 @@ class ArticlePage extends React.Component {
     this.props.fetchCommentsByArticleID(this.props.match.params.article_id);
   }
 
-  shouldComponentUpdate(nextProps) {
-    return nextProps.selectedArticle.created_by !== this.props.selectedArticle.created_by;
-  }
-
-  componentDidUpate() {
-    console.log('updated author:', this.props.selectedArticle.created_by);
-  }
-
   render () {
     const images = {
       football: "https://ugc.futurelearn.com/uploads/images/90/2d/902d0c48-095e-4919-81aa-4b8f4d3f198c.jpg",
@@ -51,10 +43,14 @@ class ArticlePage extends React.Component {
       align-items: center;
       color: #fff;
       font-size: 3rem;
-      text-shadow: 2px 2px 0px #000, -2px -2px 0px #000;
+      text-shadow: 1px 1px 0px #000, -1px -1px 0px #000, -1px 1px 0px #000, 1px -1px 0px #000;
       text-align: center;
       padding: 1rem;
       margin-bottom: 1rem;
+
+      h2 {
+        font-size: 3rem;
+      }
     `;
 
     return (
@@ -63,8 +59,9 @@ class ArticlePage extends React.Component {
           <HeaderImage>
             <h2>{this.props.selectedArticle.title}</h2>
           </HeaderImage>
-
-          <Byline authorUsername={this.props.selectedArticle.created_by} />
+          <hr />
+          <Byline username={this.props.selectedArticle.created_by} />
+          <hr />
           <ArticleText 
             body={this.props.selectedArticle.body} 
           />
@@ -75,7 +72,7 @@ class ArticlePage extends React.Component {
           postComment={this.props.addCommentsByArticleID}
         />
         <CommentList 
-          selectedComments={this.props.selectedComments} 
+          selectedComments={this.props.comments} 
         />               
       </div>
     );
@@ -99,18 +96,18 @@ function mapDispatchToProps (dispatch) {
 function MapStateToProps (state) {
   return {
     selectedArticle: state.selectedArticle,
-    selectedComments: state.selectedComments
+    comments: state.selectedComments
   };
 }
 
 ArticlePage.defaultProps = {
   selectedArticle: {},
-  selectedComments: []
+  comments: []
 }
 
 ArticlePage.propTypes = {
     selectedArticle: PropTypes.object,
-    selectedComments: PropTypes.array,
+    comments: PropTypes.array,
     fetchArticlesByID: PropTypes.func.isRequired,
     fetchCommentsByArticleID: PropTypes.func.isRequired,
     addCommentsByArticleID: PropTypes.func.isRequired,

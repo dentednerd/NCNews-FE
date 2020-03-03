@@ -49,7 +49,7 @@ const UserList = styled.ul`
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 1rem;
+    margin: 0.5rem 0;
   }
 
   h3 {
@@ -81,7 +81,15 @@ class Sidebar extends React.Component {
         </StyledSection>
         <StyledSection>
           <UserList>
-            <h3>Current Users</h3>
+            <h3>Topics</h3>
+            <li><Link to="/topics/coding">coding</Link></li>
+            <li><Link to="/topics/cooking">cooking</Link></li>
+            <li><Link to="/topics/football">football</Link></li>
+          </UserList>
+        </StyledSection>
+        <StyledSection>
+          <UserList>
+            <h3>Users</h3>
             {this.props.users && this.props.users.map(user => (
               <Link to={`/users/${user.username}`} key={user.name}>
                 <li>

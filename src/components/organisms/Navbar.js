@@ -30,7 +30,7 @@ const NavTab = styled(Link)`
   align-items: center;
   background-color: #fff;
   padding: 0 1rem;
-  margin: 0 1rem; 
+  margin: 0; 
   min-width: 7rem;
   width: 7rem;
   height: 3rem;
@@ -41,6 +41,7 @@ const NavTab = styled(Link)`
   border-top-right-radius: 1rem;
   box-shadow: -1px -1px 3px #666;
   text-decoration: none;
+  color: #222;
 
   &:hover {
     background-color: rgba(200, 200, 255, 0.5);
@@ -66,9 +67,6 @@ class Navbar extends React.Component {
         <Container>
           <Title>Northcoders News</Title>
           <NavTab to="/">Home</NavTab>
-          <NavTab to="/topics/football">Football</NavTab>
-          <NavTab to="/topics/cooking">Cooking</NavTab>
-          <NavTab to="/topics/coding">Coding</NavTab>
         </Container>
       </StyledNav>
     );
